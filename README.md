@@ -14,7 +14,7 @@
 <br/>
 
 <p align="center">
-  <img src="img1 (1).jpeg" width="100%" alt="Clawchan Intelligence Agency Hero" />
+  <img src="img1 (2).jpeg" width="100%" alt="Clawchan Intelligence Agency Hero" />
 </p>
 
 
@@ -717,7 +717,7 @@ const defaultLayers = {
 ### Intelligence Modules & Global Tracking
 
 <p align="center">
-  <img src="img1 (2).jpeg" width="49%" alt="Intelligence Module View" />
+  <img src="img1 (1).jpeg" width="49%" alt="Intelligence Module View" />
   <img src="img1 (3).jpeg" width="49%" alt="Global Tracking Interface" />
 </p>
 
