@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CLAWCHAN Architecture - Terminal Edition</title>
+<script src="https://statics.moonshot.cn/kimi-ppt/html-gen/static/tailwindcss@4_0805.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&amp;family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .ppt-slide {
+                @apply relative w-[1280px] h-[720px] mx-auto p-[40px] box-border overflow-hidden mb-[40px];
+            }
+        }
+    </style>
+<style>
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: #0c0c0c;
+        }
+        .font-sans {
+            font-family: 'Inter', sans-serif;
+        }
+        .terminal-window {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+        .terminal-header {
+            background: linear-gradient(180deg, #2a2a2a 0%, #1f1f1f 100%);
+            border-bottom: 1px solid #333;
+            border-radius: 8px 8px 0 0;
+        }
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .terminal-dot.red { background: #ff5f56; }
+        .terminal-dot.yellow { background: #ffbd2e; }
+        .terminal-dot.green { background: #27c93f; }
+        .code-keyword { color: #ff79c6; }
+        .code-string { color: #f1fa8c; }
+        .code-function { color: #50fa7b; }
+        .code-comment { color: #6272a4; }
+        .code-variable { color: #8be9fd; }
+        .code-number { color: #bd93f9; }
+        .mindmap-line {
+            stroke: #50fa7b;
+            stroke-width: 2;
+            fill: none;
+        }
+        .mindmap-node {
+            background: #1a1a1a;
+            border: 1px solid #50fa7b;
+            border-radius: 6px;
+        }
+        .glow-green { box-shadow: 0 0 20px rgba(80, 250, 123, 0.3); }
+        .glow-cyan { box-shadow: 0 0 20px rgba(139, 233, 253, 0.3); }
+        .glow-purple { box-shadow: 0 0 20px rgba(189, 147, 249, 0.3); }
+    </style>
+</head>
+<body class="py-8 bg-[#0c0c0c]">
+<!-- Slide 1: Terminal Cover -->
+<div class="ppt-slide bg-[#0c0c0c]" type="cover">
+<div class="terminal-window h-full flex flex-col">
+<div class="terminal-header px-4 py-3 flex items-center gap-2">
+<div class="terminal-dot red"></div>
+<div class="terminal-dot yellow"></div>
+<div class="terminal-dot green"></div>
+<span class="ml-4 text-[#888] text-sm font-sans">clawchan@agency:~</span>
+</div>
+<div class="flex-1 p-8 flex flex-col justify-center items-center">
+<div class="mb-8">
+<div class="inline-flex items-center gap-2 px-4 py-2 bg-[#ff79c6]/10 border border-[#ff79c6]/30 rounded">
+<span class="text-[#ff79c6] text-sm">CLASSIFIED // TOP SECRET</span>
+</div>
+</div>
+<pre class="text-center leading-tight mb-8"><span class="text-[#50fa7b]">╔═══════════════════════════════════════════════════════════╗</span>
+<span class="text-[#50fa7b]">║</span>                                                           <span class="text-[#50fa7b]">║</span>
+<span class="text-[#50fa7b]">║</span>   <span class="text-[#fff] text-6xl font-bold">CLAW</span><span class="text-[#ff79c6] text-6xl font-bold">CHAN</span>                                              <span class="text-[#50fa7b]">║</span>
+<span class="text-[#50fa7b]">║</span>                                                           <span class="text-[#50fa7b]">║</span>
+<span class="text-[#50fa7b]">║</span>      <span class="text-[#8be9fd]">INTELLIGENCE AGENCY</span>                                <span class="text-[#50fa7b]">║</span>
+<span class="text-[#50fa7b]">║</span>                                                           <span class="text-[#50fa7b]">║</span>
+<span class="text-[#50fa7b]">╚═══════════════════════════════════════════════════════════╝</span></pre>
+<p class="text-[#888] text-lg mb-8 font-sans">Global Situational Awareness &amp; Predictive Intelligence Platform</p>
+<div class="flex items-center gap-6 text-[#6272a4] text-sm">
+<span class="flex items-center gap-2"><i class="fab fa-react text-[#61dafb]"></i> React 18</span>
+<span class="flex items-center gap-2"><i class="fas fa-cube text-[#8be9fd]"></i> Three.js</span>
+<span class="flex items-center gap-2"><i class="fas fa-code text-[#3178c6]"></i> TypeScript</span>
+<span class="flex items-center gap-2"><i class="fas fa-bolt text-[#f1fa8c]"></i> Vite</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 2: System Architecture Mindmap -->
+<div class="ppt-slide bg-[#0c0c0c]" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-4">
+<div class="flex items-center gap-3">
+<span class="text-[#50fa7b]">$</span>
+<h2 class="text-3xl font-bold text-white">cat architecture.md</h2>
+</div>
+</div>
+<div class="flex-1 flex items-center justify-center">
+<div class="relative w-full max-w-5xl">
+<!-- Central Node -->
+<div class="flex items-center justify-center mb-8">
+<div class="mindmap-node glow-green px-6 py-4 bg-[#1a1a1a] border-2 border-[#50fa7b]">
+<div class="text-[#50fa7b] text-xl font-bold text-center">CLAWCHAN<br/><span class="text-sm text-[#888]">Core Engine</span></div>
+</div>
+</div>
+<!-- Three Branches -->
+<div class="grid grid-cols-3 gap-8">
+<!-- UI Layer -->
+<div class="flex flex-col items-center">
+<div class="w-px h-8 bg-[#50fa7b]"></div>
+<div class="mindmap-node glow-cyan px-4 py-3 bg-[#1a1a1a] border border-[#8be9fd] w-full">
+<div class="text-[#8be9fd] font-bold mb-2 text-center">UI Layer</div>
+<div class="space-y-1 text-xs text-[#888]">
+<div class="flex items-center gap-2"><span class="text-[#50fa7b]">├──</span> React 18</div>
+<div class="flex items-center gap-2"><span class="text-[#50fa7b]">├──</span> TypeScript</div>
+<div class="flex items-center gap-2"><span class="text-[#50fa7b]">├──</span> Three.js</div>
+<div class="flex items-center gap-2"><span class="text-[#50fa7b]">└──</span> Tailwind</div>
+</div>
+</div>
+<div class="mt-3 space-y-1 text-xs">
+<div class="text-[#6272a4]">• 3D Globe</div>
+<div class="text-[#6272a4]">• Dashboard</div>
+<div class="text-[#6272a4]">• Layer System</div>
+</div>
+</div>
+<!-- Intelligence Engine -->
+<div class="flex flex-col items-center">
+<div class="w-px h-8 bg-[#50fa7b]"></div>
+<div class="mindmap-node glow-purple px-4 py-3 bg-[#1a1a1a] border border-[#bd93f9] w-full">
+<div class="text-[#bd93f9] font-bold mb-2 text-center">Intelligence</div>
+<div class="space-y-1 text-xs text-[#888]">
+<div class="flex items-center gap-2"><span class="text-[#50fa7b]">├──</span> Zustand</div>
+<div class="flex items-center gap-2"><span class="text-[#50fa7b]">├──</span> TanStack</div>
+<div class="flex items-center gap-2"><span class="text-[#50fa7b]">├──</span> Aircraft</div>
+<div class="flex items-center gap-2"><span class="text-[#50fa7b]">└──</span> Satellite</div>
+</div>
+</div>
+<div class="mt-3 space-y-1 text-xs">
+<div class="text-[#6272a4]">• State Store</div>
+<div class="text-[#6272a4]">• Cache Layer</div>
+<div class="text-[#6272a4]">• 8 Modules</div>
+</div>
+</div>
+<!-- Data Sources -->
+<div class="flex flex-col items-center">
+<div class="w-px h-8 bg-[#50fa7b]"></div>
+<div class="mindmap-node px-4 py-3 bg-[#1a1a1a] border border-[#f1fa8c] w-full">
+<div class="text-[#f1fa8c] font-bold mb-2 text-center">Data APIs</div>
+<div class="space-y-1 text-xs text-[#888]">
+<div class="flex items-center gap-2"><span class="text-[#50fa7b]">├──</span> USGS</div>
+<div class="flex items-center gap-2"><span class="text-[#50fa7b]">├──</span> NASA</div>
+<div class="flex items-center gap-2"><span class="text-[#50fa7b]">├──</span> ADS-B</div>
+<div class="flex items-center gap-2"><span class="text-[#50fa7b]">└──</span> +8 more</div>
+</div>
+</div>
+<div class="mt-3 space-y-1 text-xs">
+<div class="text-[#6272a4]">• 11 APIs</div>
+<div class="text-[#6272a4]">• Real-time</div>
+<div class="text-[#6272a4]">• Fallback</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 3: Data Pipeline Terminal -->
+<div class="ppt-slide bg-[#0c0c0c]" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-4">
+<div class="flex items-center gap-3">
+<span class="text-[#50fa7b]">$</span>
+<h2 class="text-3xl font-bold text-white">./pipeline.sh --verbose</h2>
+</div>
+</div>
+<div class="flex-1 grid grid-cols-2 gap-4">
+<!-- Terminal Output -->
+<div class="terminal-window flex flex-col">
+<div class="terminal-header px-3 py-2 flex items-center gap-2">
+<div class="terminal-dot red"></div>
+<div class="terminal-dot yellow"></div>
+<div class="terminal-dot green"></div>
+<span class="ml-3 text-[#888] text-xs">pipeline.log</span>
+</div>
+<div class="flex-1 p-4 font-mono text-sm overflow-auto">
+<div class="mb-3">
+<div class="text-[#6272a4]"># Data Ingestion Pipeline</div>
+<div class="text-[#50fa7b]">[INFO] Starting pipeline...</div>
+</div>
+<div class="space-y-4">
+<div>
+<div class="text-[#8be9fd] mb-1">01. FETCH</div>
+<div class="text-[#888] text-xs space-y-1">
+<div><span class="text-[#ff79c6]">retry:</span> 3 attempts</div>
+<div><span class="text-[#ff79c6]">timeout:</span> 3000ms</div>
+<div><span class="text-[#ff79c6]">abort:</span> Controller</div>
+</div>
+</div>
+<div>
+<div class="text-[#f1fa8c] mb-1">02. TRANSFORM</div>
+<div class="text-[#888] text-xs space-y-1">
+<div><span class="text-[#ff79c6]">schema:</span> TypeScript</div>
+<div><span class="text-[#ff79c6]">validate:</span> Zod</div>
+<div><span class="text-[#ff79c6]">enrich:</span> Geocode</div>
+</div>
+</div>
+<div>
+<div class="text-[#50fa7b] mb-1">03. CACHE</div>
+<div class="text-[#888] text-xs space-y-1">
+<div><span class="text-[#ff79c6]">ttl:</span> 30s (aircraft)</div>
+<div><span class="text-[#ff79c6]">ttl:</span> 60s (disasters)</div>
+<div><span class="text-[#ff79c6]">strategy:</span> SWR</div>
+</div>
+</div>
+<div>
+<div class="text-[#bd93f9] mb-1">04. STORE</div>
+<div class="text-[#888] text-xs space-y-1">
+<div><span class="text-[#ff79c6]">store:</span> Zustand</div>
+<div><span class="text-[#ff79c6]">persist:</span> localStorage</div>
+<div><span class="text-[#ff79c6]">sync:</span> Real-time</div>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-[#333]">
+<div class="text-[#50fa7b]">[SUCCESS] Pipeline complete</div>
+<div class="text-[#6272a4]">Latency: &lt;500ms | Hit Rate: 85%</div>
+</div>
+</div>
+</div>
+<!-- Fallback System -->
+<div class="terminal-window flex flex-col">
+<div class="terminal-header px-3 py-2 flex items-center gap-2">
+<div class="terminal-dot red"></div>
+<div class="terminal-dot yellow"></div>
+<div class="terminal-dot green"></div>
+<span class="ml-3 text-[#888] text-xs">fallback.config</span>
+</div>
+<div class="flex-1 p-4 font-mono text-sm">
+<div class="text-[#6272a4] mb-3"># Fallback Chain Configuration</div>
+<div class="space-y-3">
+<div class="bg-[#1a1a1a] rounded p-3 border-l-2 border-[#50fa7b]">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-2 h-2 bg-[#50fa7b] rounded-full"></div>
+<span class="text-[#50fa7b] font-bold">PRIMARY</span>
+</div>
+<div class="text-[#888] text-xs space-y-1">
+<div>api.adsb.lol</div>
+<div>api.usgs.gov</div>
+<div>eonet.gsfc.nasa.gov</div>
+</div>
+</div>
+<div class="bg-[#1a1a1a] rounded p-3 border-l-2 border-[#f1fa8c]">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-2 h-2 bg-[#f1fa8c] rounded-full"></div>
+<span class="text-[#f1fa8c] font-bold">SECONDARY</span>
+</div>
+<div class="text-[#888] text-xs space-y-1">
+<div>opensky-network.org</div>
+<div>backup.aero.api</div>
+</div>
+</div>
+<div class="bg-[#1a1a1a] rounded p-3 border-l-2 border-[#ff79c6]">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-2 h-2 bg-[#ff79c6] rounded-full"></div>
+<span class="text-[#ff79c6] font-bold">MOCK (Always)</span>
+</div>
+<div class="text-[#888] text-xs space-y-1">
+<div>Simulated traffic</div>
+<div>Demo satellites</div>
+<div>Never fails</div>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-[#333]">
+<div class="flex items-center justify-between">
+<span class="text-[#888]">Reliability:</span>
+<span class="text-[#50fa7b] font-bold">99%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 4: 3D Engine Code -->
+<div class="ppt-slide bg-[#0c0c0c]" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-4">
+<div class="flex items-center gap-3">
+<span class="text-[#50fa7b]">$</span>
+<h2 class="text-3xl font-bold text-white">cat src/components/Globe.tsx</h2>
+</div>
+</div>
+<div class="flex-1 grid grid-cols-5 gap-4">
+<!-- Code Block -->
+<div class="col-span-3 terminal-window flex flex-col">
+<div class="terminal-header px-3 py-2 flex items-center gap-2">
+<div class="terminal-dot red"></div>
+<div class="terminal-dot yellow"></div>
+<div class="terminal-dot green"></div>
+<span class="ml-3 text-[#888] text-xs">Globe.tsx</span>
+</div>
+<div class="flex-1 p-4 font-mono text-sm overflow-auto">
+<pre><span class="code-keyword">import</span> { Canvas } <span class="code-keyword">from</span> <span class="code-string">'@react-three/fiber'</span>
+<span class="code-keyword">import</span> { OrbitControls } <span class="code-keyword">from</span> <span class="code-string">'@react-three/drei'</span>
+<span class="code-keyword">import</span> ThreeGlobe <span class="code-keyword">from</span> <span class="code-string">'three-globe'</span>
+
+<span class="code-comment">// 3D Geospatial Visualization Engine</span>
+<span class="code-keyword">export function</span> <span class="code-function">GlobeContainer</span>() {
+  <span class="code-keyword">return</span> (
+    <span class="code-variable">&lt;Canvas&gt;</span>
+      <span class="code-comment">{/* Atmosphere &amp; Lighting */}</span>
+      <span class="code-variable">&lt;Atmosphere /&gt;</span>
+      <span class="code-variable">&lt;ambientLight</span> <span class="code-variable">intensity</span>={0.5} <span class="code-variable">/&gt;</span>
+      
+      <span class="code-comment">{/* Satellite Imagery Layer */}</span>
+      <span class="code-variable">&lt;ThreeGlobe</span>
+        <span class="code-variable">globeImageUrl</span>={<span class="code-string">"//satellite.jpg"</span>}
+        <span class="code-variable">bumpImageUrl</span>={<span class="code-string">"//topology.png"</span>}
+        <span class="code-variable">showAtmosphere</span>={true}
+      <span class="code-variable">/&gt;</span>
+      
+      <span class="code-comment">{/* Dynamic Markers */}</span>
+      <span class="code-variable">&lt;AircraftMarkers</span> <span class="code-variable">data</span>={aircraft} <span class="code-variable">/&gt;</span>
+      <span class="code-variable">&lt;SatelliteMarkers</span> <span class="code-variable">data</span>={satellites} <span class="code-variable">/&gt;</span>
+      <span class="code-variable">&lt;DisasterMarkers</span> <span class="code-variable">data</span>={disasters} <span class="code-variable">/&gt;</span>
+      
+      <span class="code-comment">{/* Camera Controls */}</span>
+      <span class="code-variable">&lt;OrbitControls</span>
+        <span class="code-variable">enableZoom</span>={true}
+        <span class="code-variable">minDistance</span>={6}
+        <span class="code-variable">maxDistance</span>={50}
+      <span class="code-variable">/&gt;</span>
+    <span class="code-variable">&lt;/Canvas&gt;</span>
+  )
+}</pre>
+</div>
+</div>
+<!-- Specs Panel -->
+<div class="col-span-2 space-y-4">
+<div class="terminal-window p-4">
+<div class="text-[#6272a4] text-xs mb-3"># Technical Specifications</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-[#888] text-sm">Max Zoom</span>
+<span class="text-[#50fa7b] font-mono text-lg font-bold">22</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[#888] text-sm">Aircraft</span>
+<span class="text-[#8be9fd] font-mono text-lg font-bold">80</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[#888] text-sm">Satellites</span>
+<span class="text-[#bd93f9] font-mono text-lg font-bold">30</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[#888] text-sm">Refresh</span>
+<span class="text-[#f1fa8c] font-mono text-lg font-bold">2s</span>
+</div>
+</div>
+</div>
+<div class="terminal-window p-4">
+<div class="text-[#6272a4] text-xs mb-3"># WebGL Performance</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs">
+<span class="text-[#888]">Draw Calls:</span>
+<span class="text-[#50fa7b]">&lt;100</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-[#888]">Vertices:</span>
+<span class="text-[#50fa7b]">50K</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-[#888]">FPS:</span>
+<span class="text-[#50fa7b]">60</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-[#888]">Latency:</span>
+<span class="text-[#50fa7b]">&lt;16ms</span>
+</div>
+</div>
+</div>
+<div class="terminal-window p-4">
+<div class="text-[#6272a4] text-xs mb-3"># Tech Stack</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-[#1a1a1a] rounded text-[#61dafb] text-xs">React</span>
+<span class="px-2 py-1 bg-[#1a1a1a] rounded text-[#8be9fd] text-xs">Three.js</span>
+<span class="px-2 py-1 bg-[#1a1a1a] rounded text-[#bd93f9] text-xs">R3F</span>
+<span class="px-2 py-1 bg-[#1a1a1a] rounded text-[#50fa7b] text-xs">WebGL</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 5: Tracking Systems Mindmap -->
+<div class="ppt-slide bg-[#0c0c0c]" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-4">
+<div class="flex items-center gap-3">
+<span class="text-[#50fa7b]">$</span>
+<h2 class="text-3xl font-bold text-white">tree src/tracking/</h2>
+</div>
+</div>
+<div class="flex-1 flex items-center justify-center">
+<div class="grid grid-cols-2 gap-8 w-full max-w-5xl">
+<!-- Aircraft Tracking -->
+<div class="terminal-window">
+<div class="terminal-header px-3 py-2 flex items-center gap-2">
+<div class="terminal-dot red"></div>
+<div class="terminal-dot yellow"></div>
+<div class="terminal-dot green"></div>
+<span class="ml-3 text-[#888] text-xs">aircraft/</span>
+</div>
+<div class="p-4">
+<div class="text-[#50fa7b] font-bold mb-3">✈ ADS-B TRACKING</div>
+<div class="font-mono text-sm space-y-2">
+<div class="text-[#888]">├── <span class="text-[#8be9fd]">api.adsb.lol</span></div>
+<div class="text-[#888]">├── <span class="text-[#f1fa8c]">80 concurrent</span></div>
+<div class="text-[#888]">├── <span class="text-[#ff79c6]">2s refresh</span></div>
+<div class="text-[#888]">└── <span class="text-[#bd93f9]">heading rotate</span></div>
+</div>
+<div class="mt-4 pt-3 border-t border-[#333]">
+<div class="text-[#6272a4] text-xs mb-2"># Data Points</div>
+<div class="grid grid-cols-2 gap-2 text-xs">
+<div class="text-[#888]">• ICAO24</div>
+<div class="text-[#888]">• Callsign</div>
+<div class="text-[#888]">• Altitude</div>
+<div class="text-[#888]">• Speed</div>
+<div class="text-[#888]">• Heading</div>
+<div class="text-[#888]">• Squawk</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Satellite Tracking -->
+<div class="terminal-window">
+<div class="terminal-header px-3 py-2 flex items-center gap-2">
+<div class="terminal-dot red"></div>
+<div class="terminal-dot yellow"></div>
+<div class="terminal-dot green"></div>
+<span class="ml-3 text-[#888] text-xs">satellite/</span>
+</div>
+<div class="p-4">
+<div class="text-[#bd93f9] font-bold mb-3">🛰 ORBITAL TRACKING</div>
+<div class="font-mono text-sm space-y-2">
+<div class="text-[#888]">├── <span class="text-[#8be9fd]">celestrak.org</span></div>
+<div class="text-[#888]">├── <span class="text-[#f1fa8c]">TLE data</span></div>
+<div class="text-[#888]">├── <span class="text-[#ff79c6]">10s refresh</span></div>
+<div class="text-[#888]">└── <span class="text-[#bd93f9]">SGP4 propagator</span></div>
+</div>
+<div class="mt-4 pt-3 border-t border-[#333]">
+<div class="text-[#6272a4] text-xs mb-2"># Tracked Objects</div>
+<div class="space-y-1 text-xs">
+<div class="flex justify-between text-[#888]">
+<span>ISS (ZARYA)</span>
+<span class="text-[#bd93f9]">25544</span>
+</div>
+<div class="flex justify-between text-[#888]">
+<span>Hubble</span>
+<span class="text-[#bd93f9]">20580</span>
+</div>
+<div class="flex justify-between text-[#888]">
+<span>Starlink</span>
+<span class="text-[#bd93f9]">5000+</span>
+</div>
+<div class="flex justify-between text-[#888]">
+<span>GPS</span>
+<span class="text-[#bd93f9]">30+</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 6: State Management Code -->
+<div class="ppt-slide bg-[#0c0c0c]" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-4">
+<div class="flex items-center gap-3">
+<span class="text-[#50fa7b]">$</span>
+<h2 class="text-3xl font-bold text-white">cat src/store/index.ts</h2>
+</div>
+</div>
+<div class="flex-1 grid grid-cols-2 gap-4">
+<!-- Store Code -->
+<div class="terminal-window flex flex-col">
+<div class="terminal-header px-3 py-2 flex items-center gap-2">
+<div class="terminal-dot red"></div>
+<div class="terminal-dot yellow"></div>
+<div class="terminal-dot green"></div>
+<span class="ml-3 text-[#888] text-xs">store.ts</span>
+</div>
+<div class="flex-1 p-4 font-mono text-sm overflow-auto">
+<pre><span class="code-keyword">import</span> { create } <span class="code-keyword">from</span> <span class="code-string">'zustand'</span>
+<span class="code-keyword">import</span> { persist } <span class="code-keyword">from</span> <span class="code-string">'zustand/middleware'</span>
+
+<span class="code-keyword">interface</span> <span class="code-variable">DashboardState</span> {
+  <span class="code-comment">// Intelligence Data</span>
+  markers: <span class="code-variable">MapMarker</span>[]
+  aircraft: <span class="code-variable">AircraftState</span>[]
+  satellites: <span class="code-variable">SatellitePos</span>[]
+  
+  <span class="code-comment">// Layer Visibility</span>
+  layers: {
+    aircraft: <span class="code-variable">boolean</span>
+    satellites: <span class="code-variable">boolean</span>
+    earthquakes: <span class="code-variable">boolean</span>
+    disasters: <span class="code-variable">boolean</span>
+  }
+  
+  <span class="code-comment">// Actions</span>
+  setAircraft: (data: <span class="code-variable">AircraftState</span>[]) =&gt; <span class="code-variable">void</span>
+  toggleLayer: (layer: <span class="code-variable">string</span>) =&gt; <span class="code-variable">void</span>
+}
+
+<span class="code-keyword">export const</span> useDashboardStore = <span class="code-function">create</span>&lt;<span class="code-variable">DashboardState</span>&gt;(
+  <span class="code-function">persist</span>((set) =&gt; ({
+    aircraft: [],
+    satellites: [],
+    layers: {
+      aircraft: <span class="code-keyword">false</span>,
+      satellites: <span class="code-keyword">false</span>,
+      earthquakes: <span class="code-keyword">true</span>,
+    },
+    <span class="code-function">setAircraft</span>: (data) =&gt; <span class="code-function">set</span>({ aircraft: data }),
+    <span class="code-function">toggleLayer</span>: (layer) =&gt; <span class="code-function">set</span>((state) =&gt; ({
+      layers: { ...state.layers, [layer]: !state.layers[layer] }
+    })),
+  }), {
+    name: <span class="code-string">'clawchan-storage'</span>
+  })
+)</pre>
+</div>
+</div>
+<!-- Data Flow Diagram -->
+<div class="terminal-window flex flex-col">
+<div class="terminal-header px-3 py-2 flex items-center gap-2">
+<div class="terminal-dot red"></div>
+<div class="terminal-dot yellow"></div>
+<div class="terminal-dot green"></div>
+<span class="ml-3 text-[#888] text-xs">flow.md</span>
+</div>
+<div class="flex-1 p-4 font-mono text-sm">
+<div class="text-[#6272a4] mb-4"># Unidirectional Data Flow</div>
+<div class="space-y-3">
+<div class="flex items-center gap-3">
+<div class="px-3 py-2 bg-[#1a1a1a] rounded border border-[#8be9fd] text-[#8be9fd] text-xs">
+                            External API
+                        </div>
+<i class="fas fa-arrow-right text-[#50fa7b]"></i>
+<div class="px-3 py-2 bg-[#1a1a1a] rounded border border-[#f1fa8c] text-[#f1fa8c] text-xs">
+                            TanStack Query
+                        </div>
+</div>
+<div class="flex items-center gap-3 ml-8">
+<i class="fas fa-arrow-down text-[#50fa7b]"></i>
+</div>
+<div class="flex items-center gap-3 ml-8">
+<div class="px-3 py-2 bg-[#1a1a1a] rounded border border-[#50fa7b] text-[#50fa7b] text-xs">
+                            Transform
+                        </div>
+<i class="fas fa-arrow-right text-[#50fa7b]"></i>
+<div class="px-3 py-2 bg-[#1a1a1a] rounded border border-[#bd93f9] text-[#bd93f9] text-xs">
+                            Zustand Store
+                        </div>
+</div>
+<div class="flex items-center gap-3 ml-8">
+<i class="fas fa-arrow-down text-[#50fa7b]"></i>
+</div>
+<div class="flex items-center gap-3 ml-8">
+<div class="px-3 py-2 bg-[#1a1a1a] rounded border border-[#ff79c6] text-[#ff79c6] text-xs">
+                            Selectors
+                        </div>
+<i class="fas fa-arrow-right text-[#50fa7b]"></i>
+<div class="px-3 py-2 bg-[#1a1a1a] rounded border border-white/30 text-white text-xs">
+                            React UI
+                        </div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-[#333]">
+<div class="text-[#6272a4] text-xs mb-3"># Performance Metrics</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="bg-[#1a1a1a] rounded p-2 text-center">
+<div class="text-[#50fa7b] font-bold text-lg">30s</div>
+<div class="text-[#888] text-xs">Cache TTL</div>
+</div>
+<div class="bg-[#1a1a1a] rounded p-2 text-center">
+<div class="text-[#8be9fd] font-bold text-lg">&lt;50ms</div>
+<div class="text-[#888] text-xs">State Update</div>
+</div>
+<div class="bg-[#1a1a1a] rounded p-2 text-center">
+<div class="text-[#bd93f9] font-bold text-lg">85%</div>
+<div class="text-[#888] text-xs">Cache Hit</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 7: API Inventory Table -->
+<div class="ppt-slide bg-[#0c0c0c]" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-4">
+<div class="flex items-center gap-3">
+<span class="text-[#50fa7b]">$</span>
+<h2 class="text-3xl font-bold text-white">cat config/apis.json | jq</h2>
+</div>
+</div>
+<div class="flex-1 terminal-window flex flex-col">
+<div class="terminal-header px-3 py-2 flex items-center gap-2">
+<div class="terminal-dot red"></div>
+<div class="terminal-dot yellow"></div>
+<div class="terminal-dot green"></div>
+<span class="ml-3 text-[#888] text-xs">apis.json</span>
+</div>
+<div class="flex-1 p-4 overflow-auto">
+<table class="w-full text-sm font-mono">
+<thead>
+<tr class="text-[#6272a4] border-b border-[#333]">
+<th class="text-left py-2 px-3">service</th>
+<th class="text-left py-2 px-3">endpoint</th>
+<th class="text-center py-2 px-3">auth</th>
+<th class="text-center py-2 px-3">rate_limit</th>
+<th class="text-center py-2 px-3">status</th>
+</tr>
+</thead>
+<tbody class="text-[#888]">
+<tr class="border-b border-[#222]">
+<td class="py-2 px-3"><span class="text-[#50fa7b]">adsb</span></td>
+<td class="py-2 px-3">api.adsb.lol</td>
+<td class="py-2 px-3 text-center text-[#ff79c6]">null</td>
+<td class="py-2 px-3 text-center">100/min</td>
+<td class="py-2 px-3 text-center"><span class="text-[#50fa7b]">●</span></td>
+</tr>
+<tr class="border-b border-[#222]">
+<td class="py-2 px-3"><span class="text-[#8be9fd]">usgs</span></td>
+<td class="py-2 px-3">earthquake.usgs.gov</td>
+<td class="py-2 px-3 text-center text-[#ff79c6]">null</td>
+<td class="py-2 px-3 text-center">∞</td>
+<td class="py-2 px-3 text-center"><span class="text-[#50fa7b]">●</span></td>
+</tr>
+<tr class="border-b border-[#222]">
+<td class="py-2 px-3"><span class="text-[#bd93f9]">nasa</span></td>
+<td class="py-2 px-3">eonet.gsfc.nasa.gov</td>
+<td class="py-2 px-3 text-center text-[#ff79c6]">null</td>
+<td class="py-2 px-3 text-center">∞</td>
+<td class="py-2 px-3 text-center"><span class="text-[#50fa7b]">●</span></td>
+</tr>
+<tr class="border-b border-[#222]">
+<td class="py-2 px-3"><span class="text-[#ff79c6]">gdacs</span></td>
+<td class="py-2 px-3">gdacs.org/xml</td>
+<td class="py-2 px-3 text-center text-[#ff79c6]">null</td>
+<td class="py-2 px-3 text-center">∞</td>
+<td class="py-2 px-3 text-center"><span class="text-[#50fa7b]">●</span></td>
+</tr>
+<tr class="border-b border-[#222]">
+<td class="py-2 px-3"><span class="text-[#f1fa8c]">celestrak</span></td>
+<td class="py-2 px-3">celestrak.org</td>
+<td class="py-2 px-3 text-center text-[#ff79c6]">null</td>
+<td class="py-2 px-3 text-center">∞</td>
+<td class="py-2 px-3 text-center"><span class="text-[#50fa7b]">●</span></td>
+</tr>
+<tr class="border-b border-[#222]">
+<td class="py-2 px-3"><span class="text-[#f1fa8c]">coingecko</span></td>
+<td class="py-2 px-3">api.coingecko.com</td>
+<td class="py-2 px-3 text-center text-[#ff79c6]">null</td>
+<td class="py-2 px-3 text-center">10/min</td>
+<td class="py-2 px-3 text-center"><span class="text-[#50fa7b]">●</span></td>
+</tr>
+<tr class="border-b border-[#222]">
+<td class="py-2 px-3"><span class="text-white">google</span></td>
+<td class="py-2 px-3">mt1.google.com</td>
+<td class="py-2 px-3 text-center text-[#50fa7b]">api_key</td>
+<td class="py-2 px-3 text-center">100K/day</td>
+<td class="py-2 px-3 text-center"><span class="text-[#50fa7b]">●</span></td>
+</tr>
+<tr class="border-b border-[#222]">
+<td class="py-2 px-3"><span class="text-[#06b6d4]">austin</span></td>
+<td class="py-2 px-3">data.austintexas.gov</td>
+<td class="py-2 px-3 text-center text-[#ff79c6]">null</td>
+<td class="py-2 px-3 text-center">1000/hr</td>
+<td class="py-2 px-3 text-center"><span class="text-[#50fa7b]">●</span></td>
+</tr>
+</tbody>
+</table>
+<div class="mt-6 grid grid-cols-4 gap-4">
+<div class="bg-[#1a1a1a] rounded p-3 text-center border border-[#50fa7b]/30">
+<div class="text-[#50fa7b] text-2xl font-bold">8</div>
+<div class="text-[#888] text-xs">No Auth</div>
+</div>
+<div class="bg-[#1a1a1a] rounded p-3 text-center border border-[#f1fa8c]/30">
+<div class="text-[#f1fa8c] text-2xl font-bold">3</div>
+<div class="text-[#888] text-xs">API Key</div>
+</div>
+<div class="bg-[#1a1a1a] rounded p-3 text-center border border-[#8be9fd]/30">
+<div class="text-[#8be9fd] text-2xl font-bold">99%</div>
+<div class="text-[#888] text-xs">Uptime</div>
+</div>
+<div class="bg-[#1a1a1a] rounded p-3 text-center border border-[#bd93f9]/30">
+<div class="text-[#bd93f9] text-2xl font-bold">&lt;500ms</div>
+<div class="text-[#888] text-xs">Latency</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 8: Intelligence Modules Tree -->
+<div class="ppt-slide bg-[#0c0c0c]" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-4">
+<div class="flex items-center gap-3">
+<span class="text-[#50fa7b]">$</span>
+<h2 class="text-3xl font-bold text-white">tree src/modules/ -L 2</h2>
+</div>
+</div>
+<div class="flex-1 grid grid-cols-4 gap-3">
+<!-- Module 1 -->
+<div class="terminal-window">
+<div class="terminal-header px-2 py-1">
+<span class="text-[#888] text-xs">geospatial/</span>
+</div>
+<div class="p-3">
+<div class="text-[#8be9fd] font-bold text-sm mb-2">🌍 GEOSPATIAL</div>
+<div class="font-mono text-xs text-[#888] space-y-1">
+<div>├── 3D Globe</div>
+<div>├── Satellite</div>
+<div>├── Zoom 2-22</div>
+<div>└── Layers</div>
+</div>
+<div class="mt-3 pt-2 border-t border-[#333] text-[#6272a4] text-xs">
+                        Google Earth API
+                    </div>
+</div>
+</div>
+<!-- Module 2 -->
+<div class="terminal-window">
+<div class="terminal-header px-2 py-1">
+<span class="text-[#888] text-xs">aircraft/</span>
+</div>
+<div class="p-3">
+<div class="text-[#50fa7b] font-bold text-sm mb-2">✈ AIRCRAFT</div>
+<div class="font-mono text-xs text-[#888] space-y-1">
+<div>├── ADS-B</div>
+<div>├── 80 active</div>
+<div>├── Heading</div>
+<div>└── 2s refresh</div>
+</div>
+<div class="mt-3 pt-2 border-t border-[#333] text-[#6272a4] text-xs">
+                        api.adsb.lol
+                    </div>
+</div>
+</div>
+<!-- Module 3 -->
+<div class="terminal-window">
+<div class="terminal-header px-2 py-1">
+<span class="text-[#888] text-xs">satellite/</span>
+</div>
+<div class="p-3">
+<div class="text-[#bd93f9] font-bold text-sm mb-2">🛰 SATELLITE</div>
+<div class="font-mono text-xs text-[#888] space-y-1">
+<div>├── Orbital</div>
+<div>├── ISS/Hubble</div>
+<div>├── Starlink</div>
+<div>└── 10s refresh</div>
+</div>
+<div class="mt-3 pt-2 border-t border-[#333] text-[#6272a4] text-xs">
+                        CelesTrak TLE
+                    </div>
+</div>
+</div>
+<!-- Module 4 -->
+<div class="terminal-window">
+<div class="terminal-header px-2 py-1">
+<span class="text-[#888] text-xs">disaster/</span>
+</div>
+<div class="p-3">
+<div class="text-[#ff79c6] font-bold text-sm mb-2">🌊 DISASTER</div>
+<div class="font-mono text-xs text-[#888] space-y-1">
+<div>├── Earthquakes</div>
+<div>├── Wildfires</div>
+<div>├── Weather</div>
+<div>└── 60s refresh</div>
+</div>
+<div class="mt-3 pt-2 border-t border-[#333] text-[#6272a4] text-xs">
+                        USGS + NASA
+                    </div>
+</div>
+</div>
+<!-- Module 5 -->
+<div class="terminal-window">
+<div class="terminal-header px-2 py-1">
+<span class="text-[#888] text-xs">economic/</span>
+</div>
+<div class="p-3">
+<div class="text-[#f1fa8c] font-bold text-sm mb-2">💰 ECONOMIC</div>
+<div class="font-mono text-xs text-[#888] space-y-1">
+<div>├── Crypto</div>
+<div>├── Currency</div>
+<div>├── Markets</div>
+<div>└── 30s refresh</div>
+</div>
+<div class="mt-3 pt-2 border-t border-[#333] text-[#6272a4] text-xs">
+                        CoinGecko
+                    </div>
+</div>
+</div>
+<!-- Module 6 -->
+<div class="terminal-window">
+<div class="terminal-header px-2 py-1">
+<span class="text-[#888] text-xs">liveintel/</span>
+</div>
+<div class="p-3">
+<div class="text-[#06b6d4] font-bold text-sm mb-2">📺 LIVE INTEL</div>
+<div class="font-mono text-xs text-[#888] space-y-1">
+<div>├── Bloomberg</div>
+<div>├── CNN/BBC</div>
+<div>├── RSS Feed</div>
+<div>└── Real-time</div>
+</div>
+<div class="mt-3 pt-2 border-t border-[#333] text-[#6272a4] text-xs">
+                        YouTube + RSS
+                    </div>
+</div>
+</div>
+<!-- Module 7 -->
+<div class="terminal-window">
+<div class="terminal-header px-2 py-1">
+<span class="text-[#888] text-xs">earthai/</span>
+</div>
+<div class="p-3">
+<div class="text-[#14b8a6] font-bold text-sm mb-2">🌬 EARTH AI</div>
+<div class="font-mono text-xs text-[#888] space-y-1">
+<div>├── Air Quality</div>
+<div>├── Solar</div>
+<div>├── Pollen</div>
+<div>└── 5min refresh</div>
+</div>
+<div class="mt-3 pt-2 border-t border-[#333] text-[#6272a4] text-xs">
+                        Google Earth
+                    </div>
+</div>
+</div>
+<!-- Module 8 -->
+<div class="terminal-window">
+<div class="terminal-header px-2 py-1">
+<span class="text-[#888] text-xs">traffic/</span>
+</div>
+<div class="p-3">
+<div class="text-[#f97316] font-bold text-sm mb-2">🚦 TRAFFIC</div>
+<div class="font-mono text-xs text-[#888] space-y-1">
+<div>├── CCTV</div>
+<div>├── Incidents</div>
+<div>├── Austin TX</div>
+<div>└── 30s refresh</div>
+</div>
+<div class="mt-3 pt-2 border-t border-[#333] text-[#6272a4] text-xs">
+                        Austin Open Data
+                    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 9: Performance Metrics -->
+<div class="ppt-slide bg-[#0c0c0c]" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-4">
+<div class="flex items-center gap-3">
+<span class="text-[#50fa7b]">$</span>
+<h2 class="text-3xl font-bold text-white">htop --tree</h2>
+</div>
+</div>
+<div class="flex-1 grid grid-cols-3 gap-4">
+<!-- Optimizations -->
+<div class="terminal-window">
+<div class="terminal-header px-3 py-2">
+<span class="text-[#888] text-xs">optimizations.config</span>
+</div>
+<div class="p-4">
+<div class="text-[#50fa7b] font-bold mb-4">⚡ OPTIMIZATIONS</div>
+<div class="space-y-3">
+<div class="bg-[#1a1a1a] rounded p-3">
+<div class="text-[#8be9fd] text-sm mb-1">Code Splitting</div>
+<div class="text-[#888] text-xs">Lazy load modules on demand</div>
+</div>
+<div class="bg-[#1a1a1a] rounded p-3">
+<div class="text-[#f1fa8c] text-sm mb-1">Memoization</div>
+<div class="text-[#888] text-xs">React.memo + useMemo</div>
+</div>
+<div class="bg-[#1a1a1a] rounded p-3">
+<div class="text-[#bd93f9] text-sm mb-1">Virtual Scrolling</div>
+<div class="text-[#888] text-xs">Render visible only</div>
+</div>
+<div class="bg-[#1a1a1a] rounded p-3">
+<div class="text-[#ff79c6] text-sm mb-1">Efficient Re-renders</div>
+<div class="text-[#888] text-xs">Zustand selectors</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Metrics -->
+<div class="terminal-window">
+<div class="terminal-header px-3 py-2">
+<span class="text-[#888] text-xs">metrics.json</span>
+</div>
+<div class="p-4">
+<div class="text-[#8be9fd] font-bold mb-4">📊 METRICS</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-[#888]">FPS</span>
+<span class="text-[#50fa7b] font-bold">60</span>
+</div>
+<div class="w-full bg-[#1a1a1a] rounded-full h-2">
+<div class="bg-[#50fa7b] h-2 rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-[#888]">FCP</span>
+<span class="text-[#50fa7b] font-bold">&lt;1.5s</span>
+</div>
+<div class="w-full bg-[#1a1a1a] rounded-full h-2">
+<div class="bg-[#50fa7b] h-2 rounded-full" style="width: 95%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-[#888]">TTI</span>
+<span class="text-[#f1fa8c] font-bold">&lt;3s</span>
+</div>
+<div class="w-full bg-[#1a1a1a] rounded-full h-2">
+<div class="bg-[#f1fa8c] h-2 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-[#888]">Bundle</span>
+<span class="text-[#8be9fd] font-bold">~250KB</span>
+</div>
+<div class="w-full bg-[#1a1a1a] rounded-full h-2">
+<div class="bg-[#8be9fd] h-2 rounded-full" style="width: 70%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Capacity -->
+<div class="terminal-window">
+<div class="terminal-header px-3 py-2">
+<span class="text-[888] text-xs">capacity.limits</span>
+</div>
+<div class="p-4">
+<div class="text-[#bd93f9] font-bold mb-4">🚀 CAPACITY</div>
+<div class="space-y-4">
+<div class="bg-[#1a1a1a] rounded p-4 text-center">
+<div class="text-4xl font-bold text-[#50fa7b] mb-1">10,000+</div>
+<div class="text-[#888] text-sm">Concurrent Objects</div>
+</div>
+<div class="bg-[#1a1a1a] rounded p-4 text-center">
+<div class="text-4xl font-bold text-[#8be9fd] mb-1">100K</div>
+<div class="text-[#888] text-sm">Daily API Calls</div>
+</div>
+<div class="bg-[#1a1a1a] rounded p-4 text-center">
+<div class="text-4xl font-bold text-[#f1fa8c] mb-1">195</div>
+<div class="text-[#888] text-sm">Countries</div>
+</div>
+<div class="bg-[#1a1a1a] rounded p-4 text-center">
+<div class="text-4xl font-bold text-[#ff79c6] mb-1">&lt;500ms</div>
+<div class="text-[#888] text-sm">Data Latency</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 10: Terminal Closing -->
+<div class="ppt-slide bg-[#0c0c0c]" type="final">
+<div class="terminal-window h-full flex flex-col">
+<div class="terminal-header px-4 py-3 flex items-center gap-2">
+<div class="terminal-dot red"></div>
+<div class="terminal-dot yellow"></div>
+<div class="terminal-dot green"></div>
+<span class="ml-4 text-[#888] text-sm">clawchan@agency:~</span>
+</div>
+<div class="flex-1 p-8 flex flex-col justify-center items-center">
+<div class="mb-8">
+<pre class="text-center leading-tight"><span class="text-[#50fa7b]">    ___  __    _______    ______  ___    __    ________  ________</span>
+<span class="text-[#50fa7b]">   /   |/ /   / ____/ |  / / __ \/   |  / /   / ____/ / / / ____/</span>
+<span class="text-[#50fa7b]">  / /|_/ /   / /    | | / / /_/ / /| | / /   / /   / /_/ / __/   </span>
+<span class="text-[#50fa7b]"> / /  / /   / /___  | |/ / _, _/ ___ |/ /___/ /___/ __  / /___   </span>
+<span class="text-[#50fa7b]">/_/  /_/    \____/  |___/_/ |_/_/  |_/_____/\____/_/ /_/_____/   </span></pre>
+</div>
+<div class="text-center mb-8">
+<div class="text-[#ff79c6] text-xl mb-2">"The owl sees all"</div>
+<div class="text-[#888]">The claw strikes true.</div>
+</div>
+<div class="grid grid-cols-3 gap-8 mb-8">
+<div class="text-center">
+<div class="text-3xl font-bold text-[#50fa7b] font-mono">80</div>
+<div class="text-[#888] text-sm">Aircraft</div>
+</div>
+<div class="text-center">
+<div class="text-3xl font-bold text-[#bd93f9] font-mono">30</div>
+<div class="text-[#888] text-sm">Satellites</div>
+</div>
+<div class="text-center">
+<div class="text-3xl font-bold text-[#8be9fd] font-mono">11</div>
+<div class="text-[#888] text-sm">APIs</div>
+</div>
+</div>
+<div class="flex items-center gap-4 text-[#6272a4] text-sm font-mono">
+<span>CLAWCHAN v2.0.0-ALPHA</span>
+<span>•</span>
+<span>CLASSIFIED</span>
+<span>•</span>
+<span>TOP SECRET</span>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

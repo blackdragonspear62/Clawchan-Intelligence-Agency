@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CLAWCHAN INTELLIGENCE AGENCY - Architecture</title>
+<script src="https://statics.moonshot.cn/kimi-ppt/html-gen/static/tailwindcss@4_0805.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
+<script src="https://cdn.jsdmirror.com/npm/mathjax@3.2.2/es5/tex-svg.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .ppt-slide {
+                @apply relative w-[1280px] h-[720px] mx-auto p-[40px] box-border overflow-hidden mb-[40px] bg-[#0a0a0f];
+            }
+        }
+    </style>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #ffffff;
+            background: #050508;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body class="py-8">
+<!-- Slide 1: Cover -->
+<div class="ppt-slide" type="cover">
+<div class="absolute inset-0 bg-gradient-to-br from-[#0a0a0f] via-[#1a1a24] to-[#0a0a0f]"></div>
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#ef4444] to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#ef4444] to-transparent"></div>
+<div class="relative h-full flex flex-col justify-center items-center">
+<div class="mb-6">
+<div class="inline-flex items-center gap-3 px-6 py-2 bg-[#ef4444]/10 border border-[#ef4444]/30 rounded">
+<i class="fas fa-shield-alt text-[#ef4444] text-xl"></i>
+<span class="text-[#ef4444] font-mono text-sm tracking-[0.3em]">CLASSIFIED // TOP SECRET</span>
+</div>
+</div>
+<h1 class="text-8xl font-black tracking-tight mb-6 text-center">
+<span class="text-white">CLAW</span><span class="text-[#ef4444]">CHAN</span>
+</h1>
+<div class="text-2xl text-white/70 font-light tracking-[0.2em] mb-12">INTELLIGENCE AGENCY</div>
+<div class="w-32 h-1 bg-gradient-to-r from-transparent via-[#ef4444] to-transparent mb-12"></div>
+<p class="text-xl text-white/60 text-center max-w-3xl leading-relaxed">
+                Global Situational Awareness &amp; Predictive Intelligence Platform
+            </p>
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-8 text-white/40 text-sm font-mono">
+<span>REACT 18</span>
+<span>•</span>
+<span>TYPESCRIPT</span>
+<span>•</span>
+<span>THREE.JS</span>
+<span>•</span>
+<span>WEBGL</span>
+</div>
+</div>
+</div>
+<!-- Slide 2: System Architecture Overview -->
+<div class="ppt-slide" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-6">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-1 h-8 bg-[#ef4444]"></div>
+<h2 class="text-4xl font-bold text-white">System Architecture Overview</h2>
+</div>
+<p class="text-white/50 text-lg ml-4">Three-tier intelligence fusion architecture</p>
+</div>
+<div class="flex-1 flex items-center justify-center">
+<div class="w-full max-w-5xl">
+<!-- Layer 1: User Interface -->
+<div class="mb-4">
+<div class="bg-gradient-to-r from-[#1a1a24] to-[#252532] border border-[#3b82f6]/30 rounded-lg p-4">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-[#3b82f6]/20 rounded-lg flex items-center justify-center">
+<i class="fas fa-desktop text-[#3b82f6] text-lg"></i>
+</div>
+<h3 class="text-xl font-semibold text-white">User Interface Layer</h3>
+</div>
+<span class="text-[#3b82f6] font-mono text-sm">React 18 + TypeScript + Vite</span>
+</div>
+<div class="grid grid-cols-3 gap-3">
+<div class="bg-[#0a0a0f]/50 rounded p-3 text-center">
+<i class="fas fa-cube text-[#3b82f6] text-2xl mb-2"></i>
+<div class="text-white/80 text-sm font-medium">3D Globe</div>
+<div class="text-white/40 text-xs font-mono mt-1">Three.js / R3F</div>
+</div>
+<div class="bg-[#0a0a0f]/50 rounded p-3 text-center">
+<i class="fas fa-chart-line text-[#3b82f6] text-2xl mb-2"></i>
+<div class="text-white/80 text-sm font-medium">Dashboard</div>
+<div class="text-white/40 text-xs font-mono mt-1">Tailwind + shadcn</div>
+</div>
+<div class="bg-[#0a0a0f]/50 rounded p-3 text-center">
+<i class="fas fa-layer-group text-[#3b82f6] text-2xl mb-2"></i>
+<div class="text-white/80 text-sm font-medium">Layer System</div>
+<div class="text-white/40 text-xs font-mono mt-1">Interactive Filters</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Arrow -->
+<div class="flex justify-center mb-4">
+<div class="flex flex-col items-center">
+<i class="fas fa-chevron-down text-[#ef4444] text-2xl animate-pulse"></i>
+<div class="text-[#ef4444] font-mono text-xs mt-1">INTELLIGENCE ENGINE</div>
+</div>
+</div>
+<!-- Layer 2: Intelligence Engine -->
+<div class="mb-4">
+<div class="bg-gradient-to-r from-[#1a1a24] to-[#252532] border border-[#f59e0b]/30 rounded-lg p-4">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-[#f59e0b]/20 rounded-lg flex items-center justify-center">
+<i class="fas fa-microchip text-[#f59e0b] text-lg"></i>
+</div>
+<h3 class="text-xl font-semibold text-white">Intelligence Engine</h3>
+</div>
+<span class="text-[#f59e0b] font-mono text-sm">Zustand + TanStack Query</span>
+</div>
+<div class="grid grid-cols-4 gap-3">
+<div class="bg-[#0a0a0f]/50 rounded p-3 text-center border-l-2 border-[#ef4444]">
+<div class="text-[#ef4444] font-mono text-xs mb-1">CONFLICT</div>
+<div class="text-white/80 text-sm">Monitor</div>
+</div>
+<div class="bg-[#0a0a0f]/50 rounded p-3 text-center border-l-2 border-[#f59e0b]">
+<div class="text-[#f59e0b] font-mono text-xs mb-1">DISASTER</div>
+<div class="text-white/80 text-sm">Response</div>
+</div>
+<div class="bg-[#0a0a0f]/50 rounded p-3 text-center border-l-2 border-[#10b981]">
+<div class="text-[#10b981] font-mono text-xs mb-1">AIRCRAFT</div>
+<div class="text-white/80 text-sm">Tracking</div>
+</div>
+<div class="bg-[#0a0a0f]/50 rounded p-3 text-center border-l-2 border-[#8b5cf6]">
+<div class="text-[#8b5cf6] font-mono text-xs mb-1">SATELLITE</div>
+<div class="text-white/80 text-sm">Orbital</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Arrow -->
+<div class="flex justify-center mb-4">
+<div class="flex flex-col items-center">
+<i class="fas fa-chevron-down text-[#ef4444] text-2xl animate-pulse"></i>
+<div class="text-[#ef4444] font-mono text-xs mt-1">DATA SOURCES</div>
+</div>
+</div>
+<!-- Layer 3: External APIs -->
+<div>
+<div class="bg-gradient-to-r from-[#1a1a24] to-[#252532] border border-[#10b981]/30 rounded-lg p-4">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-[#10b981]/20 rounded-lg flex items-center justify-center">
+<i class="fas fa-server text-[#10b981] text-lg"></i>
+</div>
+<h3 class="text-xl font-semibold text-white">External Data Sources</h3>
+</div>
+<span class="text-[#10b981] font-mono text-sm">11 APIs Integrated</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="text-center">
+<div class="w-12 h-12 bg-[#0a0a0f] rounded-full flex items-center justify-center mb-1 border border-[#3b82f6]/30">
+<i class="fas fa-globe-americas text-[#3b82f6]"></i>
+</div>
+<div class="text-white/60 text-xs font-mono">USGS</div>
+</div>
+<div class="text-center">
+<div class="w-12 h-12 bg-[#0a0a0f] rounded-full flex items-center justify-center mb-1 border border-[#8b5cf6]/30">
+<i class="fas fa-satellite text-[#8b5cf6]"></i>
+</div>
+<div class="text-white/60 text-xs font-mono">NASA</div>
+</div>
+<div class="text-center">
+<div class="w-12 h-12 bg-[#0a0a0f] rounded-full flex items-center justify-center mb-1 border border-[#ef4444]/30">
+<i class="fas fa-plane text-[#ef4444]"></i>
+</div>
+<div class="text-white/60 text-xs font-mono">ADS-B</div>
+</div>
+<div class="text-center">
+<div class="w-12 h-12 bg-[#0a0a0f] rounded-full flex items-center justify-center mb-1 border border-[#f59e0b]/30">
+<i class="fas fa-coins text-[#f59e0b]"></i>
+</div>
+<div class="text-white/60 text-xs font-mono">CRYPTO</div>
+</div>
+<div class="text-center">
+<div class="w-12 h-12 bg-[#0a0a0f] rounded-full flex items-center justify-center mb-1 border border-[#10b981]/30">
+<i class="fas fa-newspaper text-[#10b981]"></i>
+</div>
+<div class="text-white/60 text-xs font-mono">NEWS</div>
+</div>
+<div class="text-center">
+<div class="w-12 h-12 bg-[#0a0a0f] rounded-full flex items-center justify-center mb-1 border border-white/20">
+<i class="fas fa-ellipsis-h text-white/40"></i>
+</div>
+<div class="text-white/60 text-xs font-mono">+6 MORE</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 3: Data Ingestion Pipeline -->
+<div class="ppt-slide" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-5">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-1 h-8 bg-[#ef4444]"></div>
+<h2 class="text-4xl font-bold text-white">Data Ingestion Pipeline</h2>
+</div>
+<p class="text-white/50 text-lg ml-4">Fetch → Transform → Cache → Store with fallback systems</p>
+</div>
+<div class="flex-1 flex gap-4">
+<!-- Pipeline Flow -->
+<div class="flex-1 flex flex-col justify-center">
+<div class="space-y-3">
+<!-- Step 1: Fetch -->
+<div class="bg-gradient-to-r from-[#1a1a24] to-[#252532] border border-[#3b82f6]/40 rounded-lg p-4">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 bg-[#3b82f6]/20 rounded-xl flex items-center justify-center shrink-0">
+<i class="fas fa-download text-[#3b82f6] text-2xl"></i>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-2">
+<h3 class="text-lg font-semibold text-white">1. Fetch Layer</h3>
+<span class="text-[#3b82f6] font-mono text-xs bg-[#3b82f6]/10 px-2 py-1 rounded">HTTP/HTTPS</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="bg-[#0a0a0f] rounded px-3 py-2 text-center">
+<div class="text-[#10b981] font-mono text-xs">✓ Retry Logic</div>
+<div class="text-white/40 text-xs">3 attempts</div>
+</div>
+<div class="bg-[#0a0a0f] rounded px-3 py-2 text-center">
+<div class="text-[#f59e0b] font-mono text-xs">⏱ Timeout</div>
+<div class="text-white/40 text-xs">3 seconds</div>
+</div>
+<div class="bg-[#0a0a0f] rounded px-3 py-2 text-center">
+<div class="text-[#ef4444] font-mono text-xs">✕ Abort</div>
+<div class="text-white/40 text-xs">Controller</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Arrow -->
+<div class="flex justify-center">
+<i class="fas fa-arrow-down text-[#ef4444] text-xl"></i>
+</div>
+<!-- Step 2: Transform -->
+<div class="bg-gradient-to-r from-[#1a1a24] to-[#252532] border border-[#f59e0b]/40 rounded-lg p-4">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 bg-[#f59e0b]/20 rounded-xl flex items-center justify-center shrink-0">
+<i class="fas fa-cogs text-[#f59e0b] text-2xl"></i>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-2">
+<h3 class="text-lg font-semibold text-white">2. Transform Layer</h3>
+<span class="text-[#f59e0b] font-mono text-xs bg-[#f59e0b]/10 px-2 py-1 rounded">Data Normalization</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="bg-[#0a0a0f] rounded px-3 py-2 text-center">
+<div class="text-white/80 font-mono text-xs">Schema Map</div>
+<div class="text-white/40 text-xs">TypeScript</div>
+</div>
+<div class="bg-[#0a0a0f] rounded px-3 py-2 text-center">
+<div class="text-white/80 font-mono text-xs">Validation</div>
+<div class="text-white/40 text-xs">Zod/Runtime</div>
+</div>
+<div class="bg-[#0a0a0f] rounded px-3 py-2 text-center">
+<div class="text-white/80 font-mono text-xs">Enrichment</div>
+<div class="text-white/40 text-xs">Geocoding</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Arrow -->
+<div class="flex justify-center">
+<i class="fas fa-arrow-down text-[#ef4444] text-xl"></i>
+</div>
+<!-- Step 3: Cache -->
+<div class="bg-gradient-to-r from-[#1a1a24] to-[#252532] border border-[#10b981]/40 rounded-lg p-4">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 bg-[#10b981]/20 rounded-xl flex items-center justify-center shrink-0">
+<i class="fas fa-bolt text-[#10b981] text-2xl"></i>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-2">
+<h3 class="text-lg font-semibold text-white">3. Cache Layer</h3>
+<span class="text-[#10b981] font-mono text-xs bg-[#10b981]/10 px-2 py-1 rounded">TanStack Query</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="bg-[#0a0a0f] rounded px-3 py-2 text-center">
+<div class="text-[#10b981] font-mono text-xs">TTL: 30s</div>
+<div class="text-white/40 text-xs">Aircraft</div>
+</div>
+<div class="bg-[#0a0a0f] rounded px-3 py-2 text-center">
+<div class="text-[#10b981] font-mono text-xs">TTL: 60s</div>
+<div class="text-white/40 text-xs">Disasters</div>
+</div>
+<div class="bg-[#0a0a0f] rounded px-3 py-2 text-center">
+<div class="text-[#10b981] font-mono text-xs">Stale-While</div>
+<div class="text-white/40 text-xs">Revalidate</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Fallback System -->
+<div class="w-72 flex flex-col">
+<div class="bg-gradient-to-b from-[#1a1a24] to-[#252532] border border-[#ef4444]/40 rounded-lg p-4 h-full">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 bg-[#ef4444]/20 rounded-lg flex items-center justify-center">
+<i class="fas fa-shield-alt text-[#ef4444]"></i>
+</div>
+<h3 class="text-lg font-semibold text-white">Fallback System</h3>
+</div>
+<div class="space-y-3">
+<div class="bg-[#0a0a0f] rounded-lg p-3 border-l-2 border-[#10b981]">
+<div class="flex items-center gap-2 mb-1">
+<div class="w-2 h-2 bg-[#10b981] rounded-full"></div>
+<span class="text-white/80 text-sm font-medium">Primary API</span>
+</div>
+<div class="text-white/40 text-xs font-mono">Real-time fetch</div>
+</div>
+<div class="flex justify-center">
+<i class="fas fa-arrow-down text-white/30"></i>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-3 border-l-2 border-[#f59e0b]">
+<div class="flex items-center gap-2 mb-1">
+<div class="w-2 h-2 bg-[#f59e0b] rounded-full"></div>
+<span class="text-white/80 text-sm font-medium">Secondary</span>
+</div>
+<div class="text-white/40 text-xs font-mono">Backup source</div>
+</div>
+<div class="flex justify-center">
+<i class="fas fa-arrow-down text-white/30"></i>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-3 border-l-2 border-[#ef4444]">
+<div class="flex items-center gap-2 mb-1">
+<div class="w-2 h-2 bg-[#ef4444] rounded-full"></div>
+<span class="text-white/80 text-sm font-medium">Mock Data</span>
+</div>
+<div class="text-white/40 text-xs font-mono">Always available</div>
+</div>
+<div class="mt-4 pt-4 border-t border-white/10">
+<div class="text-white/60 text-xs font-mono mb-2">Reliability:</div>
+<div class="flex items-center gap-2">
+<div class="flex-1 bg-[#0a0a0f] rounded-full h-2">
+<div class="bg-gradient-to-r from-[#10b981] to-[#3b82f6] h-2 rounded-full" style="width: 99%"></div>
+</div>
+<span class="text-[#10b981] font-mono text-sm">99%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 4: 3D Geospatial Visualization Engine -->
+<div class="ppt-slide" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-5">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-1 h-8 bg-[#ef4444]"></div>
+<h2 class="text-4xl font-bold text-white">3D Geospatial Visualization Engine</h2>
+</div>
+<p class="text-white/50 text-lg ml-4">Three.js / React Three Fiber architecture with WebGL rendering</p>
+</div>
+<div class="flex-1 flex gap-4">
+<!-- Component Tree -->
+<div class="w-80 flex flex-col">
+<div class="bg-gradient-to-b from-[#1a1a24] to-[#252532] border border-[#3b82f6]/30 rounded-lg p-4 h-full">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 bg-[#3b82f6]/20 rounded-lg flex items-center justify-center">
+<i class="fas fa-cube text-[#3b82f6]"></i>
+</div>
+<h3 class="text-lg font-semibold text-white">Component Tree</h3>
+</div>
+<div class="space-y-2 font-mono text-sm">
+<div class="bg-[#0a0a0f] rounded p-2 border-l-2 border-[#3b82f6]">
+<span class="text-[#3b82f6]">&lt;Canvas&gt;</span>
+</div>
+<div class="ml-4 bg-[#0a0a0f] rounded p-2 border-l-2 border-[#8b5cf6]">
+<span class="text-[#8b5cf6]">&lt;GlobeContainer&gt;</span>
+</div>
+<div class="ml-8 bg-[#0a0a0f] rounded p-2 border-l-2 border-[#10b981]">
+<span class="text-[#10b981]">&lt;Atmosphere /&gt;</span>
+</div>
+<div class="ml-8 bg-[#0a0a0f] rounded p-2 border-l-2 border-[#f59e0b]">
+<span class="text-[#f59e0b]">&lt;SatelliteLayer /&gt;</span>
+</div>
+<div class="ml-8 bg-[#0a0a0f] rounded p-2 border-l-2 border-[#ef4444]">
+<span class="text-[#ef4444]">&lt;MarkerSystem /&gt;</span>
+</div>
+<div class="ml-12 bg-[#0a0a0f] rounded p-2 border-l-2 border-white/30">
+<span class="text-white/60">&lt;Aircraft /&gt;</span>
+</div>
+<div class="ml-12 bg-[#0a0a0f] rounded p-2 border-l-2 border-white/30">
+<span class="text-white/60">&lt;Satellite /&gt;</span>
+</div>
+<div class="ml-12 bg-[#0a0a0f] rounded p-2 border-l-2 border-white/30">
+<span class="text-white/60">&lt;Disaster /&gt;</span>
+</div>
+<div class="ml-8 bg-[#0a0a0f] rounded p-2 border-l-2 border-[#06b6d4]">
+<span class="text-[#06b6d4]">&lt;OrbitLines /&gt;</span>
+</div>
+<div class="ml-4 bg-[#0a0a0f] rounded p-2 border-l-2 border-[#f59e0b]">
+<span class="text-[#f59e0b]">&lt;CameraControls /&gt;</span>
+</div>
+<div class="ml-4 bg-[#0a0a0f] rounded p-2 border-l-2 border-[#10b981]">
+<span class="text-[#10b981]">&lt;Interaction /&gt;</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Globe Visualization -->
+<div class="flex-1 flex flex-col">
+<div class="bg-gradient-to-br from-[#1a1a24] to-[#252532] border border-white/10 rounded-lg p-5 flex-1 flex flex-col">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-semibold text-white">WebGL Render Pipeline</h3>
+<span class="text-[#3b82f6] font-mono text-xs bg-[#3b82f6]/10 px-2 py-1 rounded">60 FPS Target</span>
+</div>
+<div class="flex-1 flex items-center justify-center">
+<div class="relative w-80 h-80">
+<!-- Globe -->
+<div class="absolute inset-0 rounded-full bg-gradient-to-br from-[#1e3a5f] via-[#0a1628] to-[#050a10] border-2 border-[#3b82f6]/30 flex items-center justify-center">
+<div class="w-64 h-64 rounded-full bg-gradient-to-br from-[#2563eb]/20 via-transparent to-[#1e40af]/10 border border-[#3b82f6]/20 relative overflow-hidden">
+<!-- Grid lines -->
+<div class="absolute inset-0" style="background: repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(59,130,246,0.1) 20px); opacity: 0.3;"></div>
+<div class="absolute inset-0" style="background: repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(59,130,246,0.1) 20px); opacity: 0.3;"></div>
+<!-- Sample markers -->
+<div class="absolute top-1/4 left-1/3 w-2 h-2 bg-[#ef4444] rounded-full shadow-[0_0_8px_#ef4444]"></div>
+<div class="absolute top-1/2 right-1/4 w-2 h-2 bg-[#10b981] rounded-full shadow-[0_0_8px_#10b981]"></div>
+<div class="absolute bottom-1/3 left-1/2 w-2 h-2 bg-[#f59e0b] rounded-full shadow-[0_0_8px_#f59e0b]"></div>
+<div class="absolute top-1/3 right-1/3 w-1.5 h-1.5 bg-[#8b5cf6] rounded-full shadow-[0_0_6px_#8b5cf6]"></div>
+</div>
+</div>
+<!-- Orbit ring -->
+<div class="absolute inset-[-20px] rounded-full border border-dashed border-[#8b5cf6]/30 animate-spin" style="animation-duration: 20s;"></div>
+</div>
+</div>
+<div class="mt-4 grid grid-cols-4 gap-2">
+<div class="bg-[#0a0a0f] rounded p-2 text-center">
+<div class="text-[#3b82f6] font-mono text-lg font-bold">22</div>
+<div class="text-white/40 text-xs">Max Zoom</div>
+</div>
+<div class="bg-[#0a0a0f] rounded p-2 text-center">
+<div class="text-[#10b981] font-mono text-lg font-bold">80</div>
+<div class="text-white/40 text-xs">Aircraft</div>
+</div>
+<div class="bg-[#0a0a0f] rounded p-2 text-center">
+<div class="text-[#8b5cf6] font-mono text-lg font-bold">30</div>
+<div class="text-white/40 text-xs">Satellites</div>
+</div>
+<div class="bg-[#0a0a0f] rounded p-2 text-center">
+<div class="text-[#f59e0b] font-mono text-lg font-bold">2s</div>
+<div class="text-white/40 text-xs">Refresh</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Technical Specs -->
+<div class="w-64 flex flex-col">
+<div class="bg-gradient-to-b from-[#1a1a24] to-[#252532] border border-[#10b981]/30 rounded-lg p-4 h-full">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 bg-[#10b981]/20 rounded-lg flex items-center justify-center">
+<i class="fas fa-microchip text-[#10b981]"></i>
+</div>
+<h3 class="text-lg font-semibold text-white">Tech Stack</h3>
+</div>
+<div class="space-y-3">
+<div class="bg-[#0a0a0f] rounded-lg p-3">
+<div class="flex items-center gap-2 mb-2">
+<i class="fas fa-cube text-[#3b82f6]"></i>
+<span class="text-white/80 text-sm font-medium">Three.js</span>
+</div>
+<div class="text-white/40 text-xs font-mono">r3f + drei</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-3">
+<div class="flex items-center gap-2 mb-2">
+<i class="fas fa-globe text-[#8b5cf6]"></i>
+<span class="text-white/80 text-sm font-medium">Three-Globe</span>
+</div>
+<div class="text-white/40 text-xs font-mono">3D globe component</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-3">
+<div class="flex items-center gap-2 mb-2">
+<i class="fas fa-image text-[#f59e0b]"></i>
+<span class="text-white/80 text-sm font-medium">Textures</span>
+</div>
+<div class="text-white/40 text-xs font-mono">8K satellite</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-3">
+<div class="flex items-center gap-2 mb-2">
+<i class="fas fa-bolt text-[#10b981]"></i>
+<span class="text-white/80 text-sm font-medium">WebGL 2.0</span>
+</div>
+<div class="text-white/40 text-xs font-mono">Hardware accel</div>
+</div>
+<div class="mt-4 pt-4 border-t border-white/10">
+<div class="text-white/60 text-xs font-mono mb-2">Performance:</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs">
+<span class="text-white/40">Draw calls:</span>
+<span class="text-[#10b981] font-mono">&lt;100</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-white/40">Vertices:</span>
+<span class="text-[#10b981] font-mono">50K</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-white/40">FPS:</span>
+<span class="text-[#10b981] font-mono">60</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 5: Real-Time Tracking Systems -->
+<div class="ppt-slide" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-5">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-1 h-8 bg-[#ef4444]"></div>
+<h2 class="text-4xl font-bold text-white">Real-Time Tracking Systems</h2>
+</div>
+<p class="text-white/50 text-lg ml-4">ADS-B aircraft &amp; satellite orbital tracking with position propagation</p>
+</div>
+<div class="flex-1 grid grid-cols-2 gap-4">
+<!-- Aircraft Tracking -->
+<div class="bg-gradient-to-br from-[#1a1a24] to-[#252532] border border-[#10b981]/30 rounded-lg p-5 flex flex-col">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 bg-[#10b981]/20 rounded-xl flex items-center justify-center">
+<i class="fas fa-plane text-[#10b981] text-2xl"></i>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-white">ADS-B Aircraft</h3>
+<div class="text-[#10b981] font-mono text-sm">api.adsb.lol</div>
+</div>
+</div>
+<div class="flex-1 space-y-3">
+<div class="bg-[#0a0a0f] rounded-lg p-3">
+<div class="text-white/60 text-xs font-mono mb-2">Position Calculation</div>
+<div class="font-mono text-xs text-white/80 space-y-1">
+<div><span class="text-[#3b82f6]">speedDegPerSec</span> = (knots × 1.852) / 111000 / 60</div>
+<div><span class="text-[#f59e0b]">newLat</span> = lat + sin(heading) × speed × Δt</div>
+<div><span class="text-[#f59e0b]">newLng</span> = lng + cos(heading) × speed × Δt</div>
+</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-3">
+<div class="text-white/60 text-xs font-mono mb-2">Data Points</div>
+<div class="grid grid-cols-2 gap-2 text-xs">
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 bg-[#10b981] rounded-full"></div>
+<span class="text-white/70">ICAO24</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 bg-[#10b981] rounded-full"></div>
+<span class="text-white/70">Callsign</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 bg-[#10b981] rounded-full"></div>
+<span class="text-white/70">Altitude</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 bg-[#10b981] rounded-full"></div>
+<span class="text-white/70">Speed</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 bg-[#10b981] rounded-full"></div>
+<span class="text-white/70">Heading</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 bg-[#10b981] rounded-full"></div>
+<span class="text-white/70">Squawk</span>
+</div>
+</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-3">
+<div class="text-white/60 text-xs font-mono mb-2">Visual Features</div>
+<div class="space-y-1 text-xs text-white/70">
+<div class="flex items-center gap-2">
+<i class="fas fa-check text-[#10b981] text-xs"></i>
+<span>Heading-rotated SVG icons</span>
+</div>
+<div class="flex items-center gap-2">
+<i class="fas fa-check text-[#10b981] text-xs"></i>
+<span>Altitude-based color coding</span>
+</div>
+<div class="flex items-center gap-2">
+<i class="fas fa-check text-[#10b981] text-xs"></i>
+<span>Flight path trails</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-3 pt-3 border-t border-white/10 flex items-center justify-between">
+<div class="text-white/40 text-xs font-mono">Update Interval:</div>
+<div class="text-[#10b981] font-mono text-sm font-bold">2 seconds</div>
+</div>
+</div>
+<!-- Satellite Tracking -->
+<div class="bg-gradient-to-br from-[#1a1a24] to-[#252532] border border-[#8b5cf6]/30 rounded-lg p-5 flex flex-col">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 bg-[#8b5cf6]/20 rounded-xl flex items-center justify-center">
+<i class="fas fa-satellite text-[#8b5cf6] text-2xl"></i>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-white">Satellite Orbital</h3>
+<div class="text-[#8b5cf6] font-mono text-sm">celestrak.org</div>
+</div>
+</div>
+<div class="flex-1 space-y-3">
+<div class="bg-[#0a0a0f] rounded-lg p-3">
+<div class="text-white/60 text-xs font-mono mb-2">Tracked Objects</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between text-xs">
+<span class="text-white/70">ISS (ZARYA)</span>
+<span class="text-[#8b5cf6] font-mono">25544</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-white/70">Hubble</span>
+<span class="text-[#8b5cf6] font-mono">20580</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-white/70">Tiangong</span>
+<span class="text-[#8b5cf6] font-mono">48274</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-white/70">Starlink Fleet</span>
+<span class="text-[#8b5cf6] font-mono">5000+</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-white/70">GPS Constellation</span>
+<span class="text-[#8b5cf6] font-mono">30+</span>
+</div>
+</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-3">
+<div class="text-white/60 text-xs font-mono mb-2">Orbital Propagation</div>
+<div class="font-mono text-xs text-white/80 space-y-1">
+<div><span class="text-[#3b82f6]">TLE</span> = Two-Line Element</div>
+<div><span class="text-[#f59e0b]">SGP4</span> = Propagator</div>
+<div><span class="text-[#10b981]">Position</span> = Lat/Lng/Alt</div>
+</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-3">
+<div class="text-white/60 text-xs font-mono mb-2">Visual Features</div>
+<div class="space-y-1 text-xs text-white/70">
+<div class="flex items-center gap-2">
+<i class="fas fa-check text-[#8b5cf6] text-xs"></i>
+<span>Orbital trajectory lines</span>
+</div>
+<div class="flex items-center gap-2">
+<i class="fas fa-check text-[#8b5cf6] text-xs"></i>
+<span>Diamond-shaped markers</span>
+</div>
+<div class="flex items-center gap-2">
+<i class="fas fa-check text-[#8b5cf6] text-xs"></i>
+<span>Velocity indicators</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-3 pt-3 border-t border-white/10 flex items-center justify-between">
+<div class="text-white/40 text-xs font-mono">Update Interval:</div>
+<div class="text-[#8b5cf6] font-mono text-sm font-bold">10 seconds</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 6: State Management & Data Flow -->
+<div class="ppt-slide" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-5">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-1 h-8 bg-[#ef4444]"></div>
+<h2 class="text-4xl font-bold text-white">State Management &amp; Data Flow</h2>
+</div>
+<p class="text-white/50 text-lg ml-4">Zustand store architecture with TanStack Query integration</p>
+</div>
+<div class="flex-1 flex gap-4">
+<!-- Store Structure -->
+<div class="w-96 flex flex-col">
+<div class="bg-gradient-to-b from-[#1a1a24] to-[#252532] border border-[#f59e0b]/30 rounded-lg p-4 h-full">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 bg-[#f59e0b]/20 rounded-lg flex items-center justify-center">
+<i class="fas fa-database text-[#f59e0b]"></i>
+</div>
+<h3 class="text-lg font-semibold text-white">Zustand Store</h3>
+</div>
+<div class="space-y-2 font-mono text-xs">
+<div class="bg-[#0a0a0f] rounded p-2 border-l-2 border-[#ef4444]">
+<div class="text-[#ef4444] mb-1">// Intelligence State</div>
+<div class="text-white/80">markers: MapMarker[]</div>
+<div class="text-white/80">aircraft: AircraftState[]</div>
+<div class="text-white/80">satellites: SatellitePos[]</div>
+</div>
+<div class="bg-[#0a0a0f] rounded p-2 border-l-2 border-[#3b82f6]">
+<div class="text-[#3b82f6] mb-1">// Layer Visibility</div>
+<div class="text-white/80">layers: LayerVisibility</div>
+<div class="text-white/60">- aircraft: boolean</div>
+<div class="text-white/60">- satellites: boolean</div>
+<div class="text-white/60">- earthquakes: boolean</div>
+</div>
+<div class="bg-[#0a0a0f] rounded p-2 border-l-2 border-[#10b981]">
+<div class="text-[#10b981] mb-1">// Selection State</div>
+<div class="text-white/80">selectedMarker: string | null</div>
+<div class="text-white/80">hoveredObject: string | null</div>
+</div>
+<div class="bg-[#0a0a0f] rounded p-2 border-l-2 border-[#8b5cf6]">
+<div class="text-[#8b5cf6] mb-1">// UI State</div>
+<div class="text-white/80">sidebarOpen: boolean</div>
+<div class="text-white/80">zoomLevel: number</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Data Flow Diagram -->
+<div class="flex-1 flex flex-col">
+<div class="bg-gradient-to-br from-[#1a1a24] to-[#252532] border border-white/10 rounded-lg p-5 flex-1">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-semibold text-white">Data Flow Architecture</h3>
+<span class="text-[#10b981] font-mono text-xs bg-[#10b981]/10 px-2 py-1 rounded">Unidirectional</span>
+</div>
+<div class="space-y-3">
+<!-- Step 1 -->
+<div class="flex items-center gap-3">
+<div class="w-32 bg-[#0a0a0f] rounded-lg p-3 border border-[#3b82f6]/30">
+<div class="text-[#3b82f6] font-mono text-xs mb-1">External API</div>
+<div class="text-white/70 text-xs">HTTP Request</div>
+</div>
+<i class="fas fa-arrow-right text-[#ef4444]"></i>
+<div class="w-32 bg-[#0a0a0f] rounded-lg p-3 border border-[#f59e0b]/30">
+<div class="text-[#f59e0b] font-mono text-xs mb-1">TanStack Query</div>
+<div class="text-white/70 text-xs">Cache + Fetch</div>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex items-center gap-3 ml-8">
+<i class="fas fa-arrow-down text-[#ef4444]"></i>
+</div>
+<div class="flex items-center gap-3 ml-8">
+<div class="w-32 bg-[#0a0a0f] rounded-lg p-3 border border-[#10b981]/30">
+<div class="text-[#10b981] font-mono text-xs mb-1">Transform</div>
+<div class="text-white/70 text-xs">Normalize Data</div>
+</div>
+<i class="fas fa-arrow-right text-[#ef4444]"></i>
+<div class="w-32 bg-[#0a0a0f] rounded-lg p-3 border border-[#8b5cf6]/30">
+<div class="text-[#8b5cf6] font-mono text-xs mb-1">Zustand</div>
+<div class="text-white/70 text-xs">Global Store</div>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex items-center gap-3 ml-8">
+<i class="fas fa-arrow-down text-[#ef4444]"></i>
+</div>
+<div class="flex items-center gap-3 ml-8">
+<div class="w-32 bg-[#0a0a0f] rounded-lg p-3 border border-[#06b6d4]/30">
+<div class="text-[#06b6d4] font-mono text-xs mb-1">Selectors</div>
+<div class="text-white/70 text-xs">Filter by Layer</div>
+</div>
+<i class="fas fa-arrow-right text-[#ef4444]"></i>
+<div class="w-32 bg-[#0a0a0f] rounded-lg p-3 border border-white/30">
+<div class="text-white/80 font-mono text-xs mb-1">React</div>
+<div class="text-white/70 text-xs">Re-render</div>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-white/10">
+<div class="grid grid-cols-3 gap-3">
+<div class="bg-[#0a0a0f] rounded p-2 text-center">
+<div class="text-[#3b82f6] font-mono text-lg font-bold">30s</div>
+<div class="text-white/40 text-xs">Cache TTL</div>
+</div>
+<div class="bg-[#0a0a0f] rounded p-2 text-center">
+<div class="text-[#10b981] font-mono text-lg font-bold">&lt;50ms</div>
+<div class="text-white/40 text-xs">State Update</div>
+</div>
+<div class="bg-[#0a0a0f] rounded p-2 text-center">
+<div class="text-[#8b5cf6] font-mono text-lg font-bold">Persist</div>
+<div class="text-white/40 text-xs">Local Storage</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Caching Strategy -->
+<div class="w-64 flex flex-col">
+<div class="bg-gradient-to-b from-[#1a1a24] to-[#252532] border border-[#10b981]/30 rounded-lg p-4 h-full">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 bg-[#10b981]/20 rounded-lg flex items-center justify-center">
+<i class="fas fa-bolt text-[#10b981]"></i>
+</div>
+<h3 class="text-lg font-semibold text-white">Caching</h3>
+</div>
+<div class="space-y-3">
+<div class="bg-[#0a0a0f] rounded-lg p-3">
+<div class="text-white/60 text-xs font-mono mb-2">Stale-While-Revalidate</div>
+<div class="text-white/70 text-xs">Show cached data immediately, fetch fresh in background</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-3">
+<div class="text-white/60 text-xs font-mono mb-2">Background Refetch</div>
+<div class="text-white/70 text-xs">Auto-refresh on window focus</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-3">
+<div class="text-white/60 text-xs font-mono mb-2">Optimistic Updates</div>
+<div class="text-white/70 text-xs">UI updates before API confirms</div>
+</div>
+<div class="mt-4 pt-4 border-t border-white/10">
+<div class="text-white/60 text-xs font-mono mb-2">Cache Hit Rate:</div>
+<div class="flex items-center gap-2">
+<div class="flex-1 bg-[#0a0a0f] rounded-full h-2">
+<div class="bg-gradient-to-r from-[#10b981] to-[#3b82f6] h-2 rounded-full" style="width: 85%"></div>
+</div>
+<span class="text-[#10b981] font-mono text-sm">85%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 7: API Gateway & Integration Layer -->
+<div class="ppt-slide" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-5">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-1 h-8 bg-[#ef4444]"></div>
+<h2 class="text-4xl font-bold text-white">API Gateway &amp; Integration Layer</h2>
+</div>
+<p class="text-white/50 text-lg ml-4">11 external data sources with unified gateway pattern</p>
+</div>
+<div class="flex-1 flex gap-4">
+<!-- API Table -->
+<div class="flex-1 flex flex-col">
+<div class="bg-gradient-to-br from-[#1a1a24] to-[#252532] border border-white/10 rounded-lg p-4 flex-1 flex flex-col">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-semibold text-white">Integrated APIs</h3>
+<span class="text-[#10b981] font-mono text-xs bg-[#10b981]/10 px-2 py-1 rounded">11 Sources</span>
+</div>
+<div class="flex-1 overflow-auto">
+<table class="w-full text-xs">
+<thead>
+<tr class="text-white/40 font-mono border-b border-white/10">
+<th class="text-left py-2">Service</th>
+<th class="text-left py-2">Endpoint</th>
+<th class="text-center py-2">Auth</th>
+<th class="text-center py-2">Rate Limit</th>
+<th class="text-center py-2">Status</th>
+</tr>
+</thead>
+<tbody class="font-mono">
+<tr class="border-b border-white/5">
+<td class="py-2"><span class="text-[#10b981]">ADS-B</span></td>
+<td class="py-2 text-white/60">api.adsb.lol</td>
+<td class="py-2 text-center text-[#ef4444]">✕</td>
+<td class="py-2 text-center text-white/60">100/min</td>
+<td class="py-2 text-center"><span class="text-[#10b981]">●</span></td>
+</tr>
+<tr class="border-b border-white/5">
+<td class="py-2"><span class="text-[#3b82f6]">USGS</span></td>
+<td class="py-2 text-white/60">earthquake.usgs.gov</td>
+<td class="py-2 text-center text-[#ef4444]">✕</td>
+<td class="py-2 text-center text-white/60">∞</td>
+<td class="py-2 text-center"><span class="text-[#10b981]">●</span></td>
+</tr>
+<tr class="border-b border-white/5">
+<td class="py-2"><span class="text-[#8b5cf6]">NASA</span></td>
+<td class="py-2 text-white/60">eonet.gsfc.nasa.gov</td>
+<td class="py-2 text-center text-[#ef4444]">✕</td>
+<td class="py-2 text-center text-white/60">∞</td>
+<td class="py-2 text-center"><span class="text-[#10b981]">●</span></td>
+</tr>
+<tr class="border-b border-white/5">
+<td class="py-2"><span class="text-[#ef4444]">GDACS</span></td>
+<td class="py-2 text-white/60">gdacs.org/xml</td>
+<td class="py-2 text-center text-[#ef4444]">✕</td>
+<td class="py-2 text-center text-white/60">∞</td>
+<td class="py-2 text-center"><span class="text-[#10b981]">●</span></td>
+</tr>
+<tr class="border-b border-white/5">
+<td class="py-2"><span class="text-[#f59e0b]">CelesTrak</span></td>
+<td class="py-2 text-white/60">celestrak.org</td>
+<td class="py-2 text-center text-[#ef4444]">✕</td>
+<td class="py-2 text-center text-white/60">∞</td>
+<td class="py-2 text-center"><span class="text-[#10b981]">●</span></td>
+</tr>
+<tr class="border-b border-white/5">
+<td class="py-2"><span class="text-[#f59e0b]">CoinGecko</span></td>
+<td class="py-2 text-white/60">api.coingecko.com</td>
+<td class="py-2 text-center text-[#ef4444]">✕</td>
+<td class="py-2 text-center text-white/60">10/min</td>
+<td class="py-2 text-center"><span class="text-[#10b981]">●</span></td>
+</tr>
+<tr class="border-b border-white/5">
+<td class="py-2"><span class="text-white/80">Google Maps</span></td>
+<td class="py-2 text-white/60">mt1.google.com</td>
+<td class="py-2 text-center text-[#10b981]">✓</td>
+<td class="py-2 text-center text-white/60">100K/day</td>
+<td class="py-2 text-center"><span class="text-[#10b981]">●</span></td>
+</tr>
+<tr class="border-b border-white/5">
+<td class="py-2"><span class="text-[#06b6d4]">Austin</span></td>
+<td class="py-2 text-white/60">data.austintexas.gov</td>
+<td class="py-2 text-center text-[#ef4444]">✕</td>
+<td class="py-2 text-center text-white/60">1000/hr</td>
+<td class="py-2 text-center"><span class="text-[#10b981]">●</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-4 pt-4 border-t border-white/10 grid grid-cols-4 gap-2">
+<div class="bg-[#0a0a0f] rounded p-2 text-center">
+<div class="text-[#10b981] font-mono text-lg font-bold">8</div>
+<div class="text-white/40 text-xs">No Auth</div>
+</div>
+<div class="bg-[#0a0a0f] rounded p-2 text-center">
+<div class="text-[#f59e0b] font-mono text-lg font-bold">3</div>
+<div class="text-white/40 text-xs">API Key</div>
+</div>
+<div class="bg-[#0a0a0f] rounded p-2 text-center">
+<div class="text-[#3b82f6] font-mono text-lg font-bold">99%</div>
+<div class="text-white/40 text-xs">Uptime</div>
+</div>
+<div class="bg-[#0a0a0f] rounded p-2 text-center">
+<div class="text-[#8b5cf6] font-mono text-lg font-bold">&lt;500ms</div>
+<div class="text-white/40 text-xs">Latency</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Gateway Pattern -->
+<div class="w-80 flex flex-col">
+<div class="bg-gradient-to-b from-[#1a1a24] to-[#252532] border border-[#ef4444]/30 rounded-lg p-4 h-full">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 bg-[#ef4444]/20 rounded-lg flex items-center justify-center">
+<i class="fas fa-shield-alt text-[#ef4444]"></i>
+</div>
+<h3 class="text-lg font-semibold text-white">Gateway Pattern</h3>
+</div>
+<div class="space-y-3">
+<div class="bg-[#0a0a0f] rounded-lg p-3 border-l-2 border-[#3b82f6]">
+<div class="flex items-center gap-2 mb-2">
+<i class="fas fa-redo text-[#3b82f6]"></i>
+<span class="text-white/80 text-sm font-medium">Retry Logic</span>
+</div>
+<div class="text-white/40 text-xs font-mono">3 attempts with exponential backoff</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-3 border-l-2 border-[#f59e0b]">
+<div class="flex items-center gap-2 mb-2">
+<i class="fas fa-clock text-[#f59e0b]"></i>
+<span class="text-white/80 text-sm font-medium">Timeout</span>
+</div>
+<div class="text-white/40 text-xs font-mono">3s default, AbortController</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-3 border-l-2 border-[#10b981]">
+<div class="flex items-center gap-2 mb-2">
+<i class="fas fa-bolt text-[#10b981]"></i>
+<span class="text-white/80 text-sm font-medium">Rate Limiting</span>
+</div>
+<div class="text-white/40 text-xs font-mono">Token bucket per API</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-3 border-l-2 border-[#8b5cf6]">
+<div class="flex items-center gap-2 mb-2">
+<i class="fas fa-database text-[#8b5cf6]"></i>
+<span class="text-white/80 text-sm font-medium">Response Cache</span>
+</div>
+<div class="text-white/40 text-xs font-mono">TTL-based with stale-while-revalidate</div>
+</div>
+<div class="mt-4 pt-4 border-t border-white/10">
+<div class="text-white/60 text-xs font-mono mb-2">Fallback Chain:</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 bg-[#10b981] rounded-full"></div>
+<span class="text-white/70 text-xs">Primary API</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 bg-[#f59e0b] rounded-full"></div>
+<span class="text-white/70 text-xs">Secondary Source</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 bg-[#ef4444] rounded-full"></div>
+<span class="text-white/70 text-xs">Mock Data (Always)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 8: Intelligence Modules Architecture -->
+<div class="ppt-slide" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-5">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-1 h-8 bg-[#ef4444]"></div>
+<h2 class="text-4xl font-bold text-white">Intelligence Modules Architecture</h2>
+</div>
+<p class="text-white/50 text-lg ml-4">8 specialized intelligence modules with independent data pipelines</p>
+</div>
+<div class="flex-1 grid grid-cols-4 gap-3">
+<!-- Module 1: Geospatial -->
+<div class="bg-gradient-to-br from-[#1a1a24] to-[#252532] border border-[#3b82f6]/30 rounded-lg p-4 flex flex-col">
+<div class="flex items-center gap-2 mb-3">
+<div class="w-10 h-10 bg-[#3b82f6]/20 rounded-lg flex items-center justify-center">
+<i class="fas fa-globe text-[#3b82f6]"></i>
+</div>
+<div>
+<h3 class="text-sm font-semibold text-white">Geospatial</h3>
+<div class="text-[#3b82f6] font-mono text-xs">3D Globe</div>
+</div>
+</div>
+<div class="flex-1 space-y-1 text-xs text-white/60">
+<div>• Satellite imagery</div>
+<div>• Layer system</div>
+<div>• Zoom 2-22</div>
+<div>• Marker clustering</div>
+</div>
+<div class="mt-3 pt-3 border-t border-white/10">
+<div class="text-[#3b82f6] font-mono text-xs">Google Earth API</div>
+</div>
+</div>
+<!-- Module 2: Aircraft -->
+<div class="bg-gradient-to-br from-[#1a1a24] to-[#252532] border border-[#10b981]/30 rounded-lg p-4 flex flex-col">
+<div class="flex items-center gap-2 mb-3">
+<div class="w-10 h-10 bg-[#10b981]/20 rounded-lg flex items-center justify-center">
+<i class="fas fa-plane text-[#10b981]"></i>
+</div>
+<div>
+<h3 class="text-sm font-semibold text-white">Aircraft</h3>
+<div class="text-[#10b981] font-mono text-xs">ADS-B</div>
+</div>
+</div>
+<div class="flex-1 space-y-1 text-xs text-white/60">
+<div>• Real-time tracking</div>
+<div>• 80 concurrent</div>
+<div>• Heading rotation</div>
+<div>• 2s refresh</div>
+</div>
+<div class="mt-3 pt-3 border-t border-white/10">
+<div class="text-[#10b981] font-mono text-xs">api.adsb.lol</div>
+</div>
+</div>
+<!-- Module 3: Satellite -->
+<div class="bg-gradient-to-br from-[#1a1a24] to-[#252532] border border-[#8b5cf6]/30 rounded-lg p-4 flex flex-col">
+<div class="flex items-center gap-2 mb-3">
+<div class="w-10 h-10 bg-[#8b5cf6]/20 rounded-lg flex items-center justify-center">
+<i class="fas fa-satellite text-[#8b5cf6]"></i>
+</div>
+<div>
+<h3 class="text-sm font-semibold text-white">Satellite</h3>
+<div class="text-[#8b5cf6] font-mono text-xs">Orbital</div>
+</div>
+</div>
+<div class="flex-1 space-y-1 text-xs text-white/60">
+<div>• ISS, Hubble</div>
+<div>• Starlink fleet</div>
+<div>• GPS constellation</div>
+<div>• 10s refresh</div>
+</div>
+<div class="mt-3 pt-3 border-t border-white/10">
+<div class="text-[#8b5cf6] font-mono text-xs">CelesTrak TLE</div>
+</div>
+</div>
+<!-- Module 4: Disaster -->
+<div class="bg-gradient-to-br from-[#1a1a24] to-[#252532] border border-[#ef4444]/30 rounded-lg p-4 flex flex-col">
+<div class="flex items-center gap-2 mb-3">
+<div class="w-10 h-10 bg-[#ef4444]/20 rounded-lg flex items-center justify-center">
+<i class="fas fa-exclamation-triangle text-[#ef4444]"></i>
+</div>
+<div>
+<h3 class="text-sm font-semibold text-white">Disaster</h3>
+<div class="text-[#ef4444] font-mono text-xs">Monitoring</div>
+</div>
+</div>
+<div class="flex-1 space-y-1 text-xs text-white/60">
+<div>• Earthquakes</div>
+<div>• Wildfires</div>
+<div>• Severe weather</div>
+<div>• 60s refresh</div>
+</div>
+<div class="mt-3 pt-3 border-t border-white/10">
+<div class="text-[#ef4444] font-mono text-xs">USGS + NASA</div>
+</div>
+</div>
+<!-- Module 5: Economic -->
+<div class="bg-gradient-to-br from-[#1a1a24] to-[#252532] border border-[#f59e0b]/30 rounded-lg p-4 flex flex-col">
+<div class="flex items-center gap-2 mb-3">
+<div class="w-10 h-10 bg-[#f59e0b]/20 rounded-lg flex items-center justify-center">
+<i class="fas fa-coins text-[#f59e0b]"></i>
+</div>
+<div>
+<h3 class="text-sm font-semibold text-white">Economic</h3>
+<div class="text-[#f59e0b] font-mono text-xs">Warfare</div>
+</div>
+</div>
+<div class="flex-1 space-y-1 text-xs text-white/60">
+<div>• Crypto prices</div>
+<div>• Currency pairs</div>
+<div>• Market indicators</div>
+<div>• 30s refresh</div>
+</div>
+<div class="mt-3 pt-3 border-t border-white/10">
+<div class="text-[#f59e0b] font-mono text-xs">CoinGecko</div>
+</div>
+</div>
+<!-- Module 6: Live Intel -->
+<div class="bg-gradient-to-br from-[#1a1a24] to-[#252532] border border-[#06b6d4]/30 rounded-lg p-4 flex flex-col">
+<div class="flex items-center gap-2 mb-3">
+<div class="w-10 h-10 bg-[#06b6d4]/20 rounded-lg flex items-center justify-center">
+<i class="fas fa-tv text-[#06b6d4]"></i>
+</div>
+<div>
+<h3 class="text-sm font-semibold text-white">Live Intel</h3>
+<div class="text-[#06b6d4] font-mono text-xs">Feeds</div>
+</div>
+</div>
+<div class="flex-1 space-y-1 text-xs text-white/60">
+<div>• Bloomberg TV</div>
+<div>• CNN, BBC</div>
+<div>• RSS aggregation</div>
+<div>• Real-time</div>
+</div>
+<div class="mt-3 pt-3 border-t border-white/10">
+<div class="text-[#06b6d4] font-mono text-xs">YouTube + RSS</div>
+</div>
+</div>
+<!-- Module 7: Earth AI -->
+<div class="bg-gradient-to-br from-[#1a1a24] to-[#252532] border border-[#14b8a6]/30 rounded-lg p-4 flex flex-col">
+<div class="flex items-center gap-2 mb-3">
+<div class="w-10 h-10 bg-[#14b8a6]/20 rounded-lg flex items-center justify-center">
+<i class="fas fa-wind text-[#14b8a6]"></i>
+</div>
+<div>
+<h3 class="text-sm font-semibold text-white">Earth AI</h3>
+<div class="text-[#14b8a6] font-mono text-xs">Environmental</div>
+</div>
+</div>
+<div class="flex-1 space-y-1 text-xs text-white/60">
+<div>• Air quality</div>
+<div>• Solar potential</div>
+<div>• Pollen levels</div>
+<div>• 5min refresh</div>
+</div>
+<div class="mt-3 pt-3 border-t border-white/10">
+<div class="text-[#14b8a6] font-mono text-xs">Google Earth</div>
+</div>
+</div>
+<!-- Module 8: Traffic -->
+<div class="bg-gradient-to-br from-[#1a1a24] to-[#252532] border border-[#f97316]/30 rounded-lg p-4 flex flex-col">
+<div class="flex items-center gap-2 mb-3">
+<div class="w-10 h-10 bg-[#f97316]/20 rounded-lg flex items-center justify-center">
+<i class="fas fa-traffic-light text-[#f97316]"></i>
+</div>
+<div>
+<h3 class="text-sm font-semibold text-white">Traffic</h3>
+<div class="text-[#f97316] font-mono text-xs">Surveillance</div>
+</div>
+</div>
+<div class="flex-1 space-y-1 text-xs text-white/60">
+<div>• CCTV cameras</div>
+<div>• Incident reports</div>
+<div>• Austin, TX</div>
+<div>• 30s refresh</div>
+</div>
+<div class="mt-3 pt-3 border-t border-white/10">
+<div class="text-[#f97316] font-mono text-xs">Austin Open Data</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 9: Performance & Scalability -->
+<div class="ppt-slide" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-5">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-1 h-8 bg-[#ef4444]"></div>
+<h2 class="text-4xl font-bold text-white">Performance &amp; Scalability</h2>
+</div>
+<p class="text-white/50 text-lg ml-4">Optimizations for 10,000+ concurrent tracked objects</p>
+</div>
+<div class="flex-1 grid grid-cols-3 gap-4">
+<!-- Optimizations -->
+<div class="bg-gradient-to-br from-[#1a1a24] to-[#252532] border border-[#10b981]/30 rounded-lg p-5">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 bg-[#10b981]/20 rounded-xl flex items-center justify-center">
+<i class="fas fa-rocket text-[#10b981] text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-white">Optimizations</h3>
+</div>
+<div class="space-y-3">
+<div class="bg-[#0a0a0f] rounded-lg p-3">
+<div class="flex items-center gap-2 mb-2">
+<i class="fas fa-code text-[#3b82f6]"></i>
+<span class="text-white/80 text-sm font-medium">Code Splitting</span>
+</div>
+<div class="text-white/50 text-xs">Lazy load modules on demand</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-3">
+<div class="flex items-center gap-2 mb-2">
+<i class="fas fa-sync text-[#f59e0b]"></i>
+<span class="text-white/80 text-sm font-medium">Memoization</span>
+</div>
+<div class="text-white/50 text-xs">React.memo + useMemo for expensive calcs</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-3">
+<div class="flex items-center gap-2 mb-2">
+<i class="fas fa-list text-[#8b5cf6]"></i>
+<span class="text-white/80 text-sm font-medium">Virtual Scrolling</span>
+</div>
+<div class="text-white/50 text-xs">Render only visible markers</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-3">
+<div class="flex items-center gap-2 mb-2">
+<i class="fas fa-bolt text-[#ef4444]"></i>
+<span class="text-white/80 text-sm font-medium">Efficient Re-renders</span>
+</div>
+<div class="text-white/50 text-xs">Zustand selectors prevent unnecessary updates</div>
+</div>
+</div>
+</div>
+<!-- Metrics -->
+<div class="bg-gradient-to-br from-[#1a1a24] to-[#252532] border border-[#3b82f6]/30 rounded-lg p-5">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 bg-[#3b82f6]/20 rounded-xl flex items-center justify-center">
+<i class="fas fa-tachometer-alt text-[#3b82f6] text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-white">Performance Metrics</h3>
+</div>
+<div class="space-y-4">
+<div class="bg-[#0a0a0f] rounded-lg p-4">
+<div class="flex items-center justify-between mb-2">
+<span class="text-white/60 text-sm">Frame Rate</span>
+<span class="text-[#10b981] font-mono text-xl font-bold">60 FPS</span>
+</div>
+<div class="w-full bg-[#0a0a0f] rounded-full h-2">
+<div class="bg-gradient-to-r from-[#10b981] to-[#3b82f6] h-2 rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-4">
+<div class="flex items-center justify-between mb-2">
+<span class="text-white/60 text-sm">First Contentful Paint</span>
+<span class="text-[#10b981] font-mono text-xl font-bold">&lt;1.5s</span>
+</div>
+<div class="w-full bg-[#0a0a0f] rounded-full h-2">
+<div class="bg-gradient-to-r from-[#10b981] to-[#3b82f6] h-2 rounded-full" style="width: 95%"></div>
+</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-4">
+<div class="flex items-center justify-between mb-2">
+<span class="text-white/60 text-sm">Time to Interactive</span>
+<span class="text-[#f59e0b] font-mono text-xl font-bold">&lt;3s</span>
+</div>
+<div class="w-full bg-[#0a0a0f] rounded-full h-2">
+<div class="bg-gradient-to-r from-[#f59e0b] to-[#10b981] h-2 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-4">
+<div class="flex items-center justify-between mb-2">
+<span class="text-white/60 text-sm">Bundle Size (gzipped)</span>
+<span class="text-[#3b82f6] font-mono text-xl font-bold">~250KB</span>
+</div>
+<div class="w-full bg-[#0a0a0f] rounded-full h-2">
+<div class="bg-gradient-to-r from-[#3b82f6] to-[#8b5cf6] h-2 rounded-full" style="width: 70%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Capacity -->
+<div class="bg-gradient-to-br from-[#1a1a24] to-[#252532] border border-[#8b5cf6]/30 rounded-lg p-5">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 bg-[#8b5cf6]/20 rounded-xl flex items-center justify-center">
+<i class="fas fa-expand-arrows-alt text-[#8b5cf6] text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-white">Scalability Limits</h3>
+</div>
+<div class="space-y-3">
+<div class="bg-[#0a0a0f] rounded-lg p-4 text-center">
+<div class="text-4xl font-bold text-[#10b981] font-mono mb-1">10,000+</div>
+<div class="text-white/60 text-sm">Concurrent Objects</div>
+<div class="text-white/40 text-xs mt-1">Aircraft + Satellites</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-4 text-center">
+<div class="text-4xl font-bold text-[#3b82f6] font-mono mb-1">100K</div>
+<div class="text-white/60 text-sm">Daily API Calls</div>
+<div class="text-white/40 text-xs mt-1">Within free tier limits</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-4 text-center">
+<div class="text-4xl font-bold text-[#f59e0b] font-mono mb-1">195</div>
+<div class="text-white/60 text-sm">Countries Covered</div>
+<div class="text-white/40 text-xs mt-1">Global intelligence</div>
+</div>
+<div class="bg-[#0a0a0f] rounded-lg p-4 text-center">
+<div class="text-4xl font-bold text-[#ef4444] font-mono mb-1">&lt;500ms</div>
+<div class="text-white/60 text-sm">Data Latency</div>
+<div class="text-white/40 text-xs mt-1">End-to-end pipeline</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 10: Closing -->
+<div class="ppt-slide" type="final">
+<div class="absolute inset-0 bg-gradient-to-br from-[#0a0a0f] via-[#1a1a24] to-[#0a0a0f]"></div>
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#ef4444] to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#ef4444] to-transparent"></div>
+<div class="relative h-full flex flex-col justify-center items-center">
+<div class="mb-8">
+<div class="w-24 h-24 bg-gradient-to-br from-[#ef4444]/20 to-[#ef4444]/5 border-2 border-[#ef4444]/50 rounded-full flex items-center justify-center mx-auto mb-6">
+<i class="fas fa-eye text-[#ef4444] text-4xl"></i>
+</div>
+</div>
+<h1 class="text-6xl font-black tracking-tight mb-4 text-center">
+<span class="text-white">The Owl</span> <span class="text-[#ef4444]">Sees All</span>
+</h1>
+<div class="w-32 h-1 bg-gradient-to-r from-transparent via-[#ef4444] to-transparent mb-6"></div>
+<p class="text-3xl text-white/70 font-light tracking-wide mb-12">
+                The claw strikes true.
+            </p>
+<div class="grid grid-cols-3 gap-8 mb-12">
+<div class="text-center">
+<div class="text-4xl font-bold text-[#10b981] font-mono mb-2">80</div>
+<div class="text-white/50 text-sm">Aircraft Tracked</div>
+</div>
+<div class="text-center">
+<div class="text-4xl font-bold text-[#8b5cf6] font-mono mb-2">30</div>
+<div class="text-white/50 text-sm">Satellites Monitored</div>
+</div>
+<div class="text-center">
+<div class="text-4xl font-bold text-[#3b82f6] font-mono mb-2">11</div>
+<div class="text-white/50 text-sm">APIs Integrated</div>
+</div>
+</div>
+<div class="flex items-center gap-4 text-white/40 text-sm font-mono">
+<span>CLAWCHAN INTELLIGENCE AGENCY</span>
+<span>•</span>
+<span>v2.0.0-ALPHA</span>
+<span>•</span>
+<span>CLASSIFIED</span>
+</div>
+</div>
+</div>
+</body>
+</html>

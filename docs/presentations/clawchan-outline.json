@@ -1,0 +1,64 @@
+{
+  "pages": [
+    {
+      "number": 1,
+      "type": "cover",
+      "title": "CLAWCHAN INTELLIGENCE AGENCY",
+      "content": "Global Situational Awareness & Predictive Intelligence Platform"
+    },
+    {
+      "number": 2,
+      "type": "content",
+      "title": "System Architecture Overview",
+      "content": "Present the high-level system architecture showing the three-tier structure: User Interface Layer, Intelligence Engine, and External Data Sources. Use a clean hierarchical diagram with connected nodes showing data flow between layers."
+    },
+    {
+      "number": 3,
+      "type": "content",
+      "title": "Data Ingestion Pipeline",
+      "content": "Detail the data flow from external APIs through fetch, transform, cache, and store layers. Show the retry logic, timeout handling, and fallback system for API failures."
+    },
+    {
+      "number": 4,
+      "type": "content",
+      "title": "3D Geospatial Visualization Engine",
+      "content": "Present the 3D globe visualization architecture using Three.js/React Three Fiber. Show the component structure: Globe container, satellite texture layers, marker systems, camera controls, and interaction handlers."
+    },
+    {
+      "number": 5,
+      "type": "content",
+      "title": "Real-Time Tracking Systems",
+      "content": "Detail the architecture for aircraft (ADS-B) and satellite tracking. Show the position calculation engine, heading/trajectory computation, update intervals, and marker rendering pipeline."
+    },
+    {
+      "number": 6,
+      "type": "content",
+      "title": "State Management & Data Flow",
+      "content": "Present the Zustand store architecture with slices for different data types. Show how React Query integrates with the global state, caching strategies, and real-time update mechanisms."
+    },
+    {
+      "number": 7,
+      "type": "content",
+      "title": "API Gateway & Integration Layer",
+      "content": "Detail the 11 external APIs integrated, showing the gateway pattern with retry logic, rate limiting, timeout handling, and fallback systems. Include a table of API sources and their reliability tiers."
+    },
+    {
+      "number": 8,
+      "type": "content",
+      "title": "Intelligence Modules Architecture",
+      "content": "Present the 8 intelligence modules as separate architectural components: Geospatial, Aircraft Tracking, Satellite Tracking, Disaster Monitoring, Economic Warfare, Live Intelligence, Google Earth AI, and Traffic Surveillance."
+    },
+    {
+      "number": 9,
+      "type": "content",
+      "title": "Performance & Scalability",
+      "content": "Detail the performance optimizations: code splitting, lazy loading, memoization, virtual scrolling for large datasets, and efficient re-rendering strategies. Show metrics for concurrent object tracking capacity."
+    },
+    {
+      "number": 10,
+      "type": "final",
+      "title": "The Owl Sees All",
+      "content": "The claw strikes true."
+    }
+  ]
+}
