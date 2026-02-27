@@ -1,0 +1,228 @@
+version: '3.8'
+
+services:
+  # Frontend
+  frontend:
+    build:
+      context: ../../frontend
+      dockerfile: ../infra/docker/Dockerfile.frontend
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=production
+      - VITE_API_URL=http://api-gateway:8080
+    depends_on:
+      - api-gateway
+    networks:
+      - clawchan-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # API Gateway
+  api-gateway:
+    build:
+      context: ../../backend/go
+      dockerfile: ../../infra/docker/Dockerfile.go
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - REDIS_URL=redis://redis:6379
+      - POSTGRES_URL=postgresql://postgres:password@postgres:5432/clawchan
+      - JWT_SECRET=${JWT_SECRET}
+    depends_on:
+      - redis
+      - postgres
+      - kafka
+    networks:
+      - clawchan-network
+    restart: unless-stopped
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+
+  # Node.js Microservices
+  api-node:
+    build:
+      context: ../../backend/nodejs
+      dockerfile: ../../infra/docker/Dockerfile.node
+    ports:
+      - "4000:4000"
+    environment:
+      - PORT=4000
+      - REDIS_URL=redis://redis:6379
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/clawchan
+    depends_on:
+      - redis
+      - postgres
+    networks:
+      - clawchan-network
+    restart: unless-stopped
+
+  # Python ML Service
+  ml-service:
+    build:
+      context: ../../backend/python
+      dockerfile: ../../infra/docker/Dockerfile.python
+    ports:
+      - "5000:5000"
+    environment:
+      - MODEL_PATH=/app/models
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      - ml-models:/app/models
+    depends_on:
+      - redis
+    networks:
+      - clawchan-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  # Rust High-Performance Service
+  adsb-processor:
+    build:
+      context: ../../backend/rust
+      dockerfile: ../../infra/docker/Dockerfile.rust
+    environment:
+      - RUST_LOG=info
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+      - kafka
+    networks:
+      - clawchan-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 1G
+
+  # Databases
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=clawchan
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    networks:
+      - clawchan-network
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis-data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - clawchan-network
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:7
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongodb-data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - clawchan-network
+    restart: unless-stopped
+
+  # Message Queue
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    depends_on:
+      - zookeeper
+    networks:
+      - clawchan-network
+    restart: unless-stopped
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    networks:
+      - clawchan-network
+    restart: unless-stopped
+
+  # Monitoring
+  prometheus:
+    image: prom/prometheus:v2.48.0
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - clawchan-network
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:10.2.0
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana-dashboards:/etc/grafana/provisioning/dashboards
+    ports:
+      - "3001:3000"
+    networks:
+      - clawchan-network
+    restart: unless-stopped
+
+  # Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - frontend
+      - api-gateway
+    networks:
+      - clawchan-network
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
+  redis-data:
+  mongodb-data:
+  ml-models:
+  prometheus-data:
+  grafana-data:
+
+networks:
+  clawchan-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

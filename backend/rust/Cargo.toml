@@ -1,0 +1,49 @@
+[package]
+name = "clawchan-processor"
+version = "2.0.0"
+edition = "2021"
+authors = ["Clawchan Intelligence Agency <dev@clawchan.io>"]
+description = "High-performance ADS-B and satellite data processor"
+license = "UNLICENSED"
+repository = "https://github.com/clawchan/agency"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1.34", features = ["full"] }
+tokio-stream = "0.1"
+futures = "0.3"
+
+# Web framework
+axum = { version = "0.7", features = ["ws"] }
+tower = "0.4"
+tower-http = { version = "0.5", features = ["cors", "compression", "trace"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Metrics
+prometheus = "0.13"
+lazy_static = "1.4"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+# Utilities
+uuid = { version = "1.6", features = ["v4"] }
+chrono = "0.4"
+
+[dev-dependencies]
+reqwest = { version = "0.11", features = ["json"] }
+
+[[bin]]
+name = "clawchan-processor"
+path = "src/main.rs"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

@@ -1,0 +1,305 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+env:
+  NODE_VERSION: '18'
+  GO_VERSION: '1.21'
+  RUST_VERSION: '1.74'
+  PYTHON_VERSION: '3.11'
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  # Frontend Build & Test
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: |
+          cd frontend
+          npm ci
+      
+      - name: Type check
+        run: |
+          cd frontend
+          npm run typecheck
+      
+      - name: Lint
+        run: |
+          cd frontend
+          npm run lint
+      
+      - name: Test
+        run: |
+          cd frontend
+          npm run test:coverage
+      
+      - name: Build
+        run: |
+          cd frontend
+          npm run build
+      
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./frontend/coverage/lcov.info
+          flags: frontend
+
+  # Node.js Backend
+  backend-node:
+    runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: clawchan_test
+        ports:
+          - 5432:5432
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: |
+          cd backend/nodejs
+          npm ci
+      
+      - name: Test
+        run: |
+          cd backend/nodejs
+          npm test
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/clawchan_test
+          REDIS_URL: redis://localhost:6379
+      
+      - name: Build
+        run: |
+          cd backend/nodejs
+          npm run build
+
+  # Go Backend
+  backend-go:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+      
+      - name: Cache Go modules
+        uses: actions/cache@v3
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+      
+      - name: Download dependencies
+        run: |
+          cd backend/go
+          go mod download
+      
+      - name: Run tests
+        run: |
+          cd backend/go
+          go test -v -race -coverprofile=coverage.out ./...
+      
+      - name: Build
+        run: |
+          cd backend/go
+          go build -v ./...
+      
+      - name: Security scan
+        uses: securego/gosec@master
+        with:
+          args: '-no-fail -fmt sarif -out results.sarif ./...'
+
+  # Rust Backend
+  backend-rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Rust
+        uses: dtolnay/rust-action@stable
+        with:
+          toolchain: ${{ env.RUST_VERSION }}
+      
+      - name: Cache Rust
+        uses: Swatinem/rust-cache@v2
+      
+      - name: Check formatting
+        run: |
+          cd backend/rust
+          cargo fmt -- --check
+      
+      - name: Run clippy
+        run: |
+          cd backend/rust
+          cargo clippy -- -D warnings
+      
+      - name: Run tests
+        run: |
+          cd backend/rust
+          cargo test --all-features
+      
+      - name: Build release
+        run: |
+          cd backend/rust
+          cargo build --release
+
+  # Python ML Service
+  backend-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Cache pip
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+      
+      - name: Install dependencies
+        run: |
+          cd backend/python
+          pip install -r requirements.txt
+      
+      - name: Lint with ruff
+        run: |
+          cd backend/python
+          ruff check .
+      
+      - name: Type check with mypy
+        run: |
+          cd backend/python
+          mypy src/
+      
+      - name: Run tests
+        run: |
+          cd backend/python
+          pytest --cov=src --cov-report=xml
+      
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./backend/python/coverage.xml
+          flags: python
+
+  # Security Scanning
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+      
+      - name: Upload Trivy scan results
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'trivy-results.sarif'
+      
+      - name: Run npm audit
+        run: npm audit --audit-level=moderate
+
+  # Build & Push Docker Images
+  docker-build:
+    runs-on: ubuntu-latest
+    needs: [frontend, backend-node, backend-go, backend-rust, backend-python]
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      matrix:
+        service: [frontend, api-gateway, api-node, ml-service, adsb-processor]
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Login to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/${{ matrix.service }}
+      
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./infra/docker/Dockerfile.${{ matrix.service }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  # Deploy to Kubernetes
+  deploy:
+    runs-on: ubuntu-latest
+    needs: docker-build
+    if: github.ref == 'refs/heads/main'
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      
+      - name: Update kubeconfig
+        run: aws eks update-kubeconfig --name clawchan-production
+      
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply -k infra/kubernetes/overlays/production/
+          kubectl rollout status deployment/frontend
+          kubectl rollout status deployment/api-gateway
