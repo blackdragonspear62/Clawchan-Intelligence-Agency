@@ -1,4 +1,6 @@
 https://x.com/ClawchanInt12
+ca: DcRTk13xqTtYVZy6rtDRfhhagkK8JUojhmEqtx12pump
+
 
 <div align="center">
 
